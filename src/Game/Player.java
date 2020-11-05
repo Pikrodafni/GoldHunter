@@ -2,7 +2,7 @@ package Game;
 
 public class Player {
 	
-	// Variables
+	// Variables deneme1
 	// -------------------------------------------------------------
 	public int gold;
 	public int max_Move;
@@ -67,6 +67,6 @@ public class Player {
 	}
 	
 	// -------------------------------------------------------------
-	// deneme
+	// deneme2
 	
 }
