@@ -46,10 +46,10 @@ public class Board {
 		this.columns = columns;
 	}
 	// -------------------------------------------------------------
-	public int[][] gold_Placement(int location[][]) {
+	/*public int[][] gold_Placement(int location[][]) {
 		
 		location[][] = null;
 		return location;
-	}
+	}*/
 	
 }

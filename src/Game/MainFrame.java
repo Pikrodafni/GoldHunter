@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -60,6 +61,31 @@ public class MainFrame extends JFrame {
 		int i=0,j=0;
 		int [] koordinatlarx = new int[tahta];
 		int [] koordinatlary = new int[tahta];
+		int [] randomNum1 = new int[80];
+		int value=0;
+		boolean tf1 = false;
+		
+		for(int r=0;r<81;r++) {
+			
+			int temporaryRandomInt=(int)(Math.random() * (397) + 1);
+			
+			for(int g=0;g<80;g++) {
+				if(randomNum1[g]==temporaryRandomInt)
+				{
+					tf1=true;
+					r--;
+				}
+			}
+			if(tf1==false) {
+			randomNum1[value]=temporaryRandomInt;
+			System.out.println("Random NUM:"+(r+1)+" "+randomNum1[value]);
+			value++;
+			}
+			tf1=false;
+			if(value==80) {
+				break;
+			}
+		}
 		
 		for(i=0;i<tahta;i++) {
 			
@@ -76,16 +102,15 @@ public class MainFrame extends JFrame {
 			
 			JLabel dimg = new JLabel("");
 			dimg.setHorizontalAlignment(SwingConstants.CENTER);
-			dimg.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gold.jpg")).getImage().getScaledInstance(artis1-5, artis2-10, Image.SCALE_SMOOTH)));
+			dimg.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gold.jpg")).getImage().getScaledInstance(artis1-5, artis2+10, Image.SCALE_SMOOTH)));
 			panel.add(dimg);
-			
 			
 			}
 		}
 		for(i=0;i<tahta;i++) {
 			
 			for(j=0;j<tahta;j++) {
-				System.out.println("koordinatx:"+koordinatlarx[i]+"koordinaty:"+koordinatlary[j]);
+				// System.out.println("koordinatx:"+koordinatlarx[i]+"koordinaty:"+koordinatlary[j]);
 			}
 			}
 		
