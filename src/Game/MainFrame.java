@@ -2,16 +2,22 @@ package Game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -39,11 +45,15 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		System.out.println("Kaça kaçlýk tahta olsun");
+		
 		int tahtax=600;
 		int tahtay=600;
 		int tahta =20;
 		
+		GamerA PlayerA = new GamerA();
+		System.out.println("rank:" +PlayerA.getChoosing_Target_Cost() );
+		
+		Board GameBoard = new Board();
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,88 +65,109 @@ public class MainFrame extends JFrame {
 		
 		
 		
-		
-		int artis1=tahtax/tahta;
-		int artis2=tahtay/tahta;
-		int koordinatx=0,koordinaty=0;
-		int i=0,j=0;
-		int [] koordinatlarx = new int[tahta];
-		int [] koordinatlary = new int[tahta];
-		
+		// -----------------------------------------------------------------
 		// Get Random Number 1-397
-		int [] randomNum1 = new int[80];
+		int total_Gold = GameBoard.getGold_Number();
+		int total_Secret_Gold = GameBoard.getSecret_Gold_Number();
+		int tRows = GameBoard.getRows();
+		int tColumns= GameBoard.getColumns();
+		int secret_gold=1;
+		ArrayList<Integer> gColumns = new ArrayList<Integer>();
+		ArrayList<Integer> gRows = new ArrayList<Integer>();
+		int [] randomNum1 = new int[total_Gold];
+		int [] randomNum2 = new int[total_Secret_Gold];
+
 		int value=0;
+		int value2=0;
 		boolean tf1 = false;
+		boolean tf2 = false;
 		
-		for(int r=0;r<81;r++) {
+		for(int r=0;r<total_Gold+1;r++) {
 			
-			int temporaryRandomInt=(int)(Math.random() * (395) + 1);
+			int temporaryRandomInt=(int)(Math.random() * (tRows*tColumns-5) + 1);
+			int secret_RandomInt=(int)(Math.random() * (total_Gold-1) + 1);
 			
-			for(int g=0;g<80;g++) {
+			for(int g=0;g<total_Gold;g++) {
 				if(randomNum1[g]==temporaryRandomInt)
 				{
 					tf1=true;
 					r--;
 				}
 			}
+			for(int h=0;h<total_Secret_Gold;h++)
+			{
+				if(randomNum2[h]==secret_RandomInt)
+				{
+					tf2=true;
+					r--;
+				}
+			}
 			if(tf1==false) {
 			randomNum1[value]=temporaryRandomInt;
-			System.out.println("Random NUM:"+(r+1)+" "+randomNum1[value]);
+			//System.out.println("Random NUM:"+(r+1)+" "+randomNum1[value]);
 			value++;
 			}
 			tf1=false;
-			if(value==80) {
+			if(tf2==false && value2!=total_Secret_Gold) {
+				randomNum2[value2]=secret_RandomInt;
+				System.out.println("Random SEc NUM:"+(r+1)+" "+randomNum2[value2]);
+				value2++;
+				}
+				tf2=false;
+			if(value==total_Gold) {
 				break;
 			}
 		}
 		// -----------------------------------------------------------------
 		
+		int i=0,j=0;
+		String goldValues = "5";
+		String GoldValues;
+		// -----------------------------------------------------------------
+		// GoldRandom
 		ArrayList<Integer> goldCoordinate = new ArrayList<Integer>();
-		for(i=1;i<399;i++) {
+		for(i=1;i<(tRows*tColumns-1);i++) {
 			goldCoordinate.add(i);
 		}
-		goldCoordinate.remove(18);
-		goldCoordinate.remove(378);
-		char [] dimg2 = new char [300];
-		int dimgNum=0;
-		for(char h='a';h<='z';h++) {
-			dimg2[dimgNum]=h;
-			System.out.println(dimg2[dimgNum]);
-			dimgNum++;
-		}
-		for(i=0;i<tahta;i++) {
-			
-			for(j=0;j<tahta;j++) {
-				koordinatx=i*artis1;
-				koordinaty=j*artis2;
-				koordinatlarx[i]=koordinatx;
-				koordinatlary[j]=koordinaty;
-			JPanel panel = new JPanel();
-			panel.setBounds(koordinatx, koordinaty, artis1, artis2);
-			panel.setBorder(new LineBorder(new Color(192, 192, 192), 1));
-			contentPane.add(panel);
-			panel.setBackground(Color.CYAN);
-			
-			for(int k=0;k<80;k++) {
-				
-			if((i*tahta)+j==goldCoordinate.get(randomNum1[k])) {
-				
-			JLabel dimg = new JLabel("");
-			dimg.setHorizontalAlignment(SwingConstants.CENTER);
-			dimg.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gold.jpg")).getImage().getScaledInstance(artis1-5, artis2+10, Image.SCALE_SMOOTH)));
-			panel.add(dimg);
-			}
-			}
-			}
-		}
-		for(i=0;i<tahta;i++) {
-			
-			for(j=0;j<tahta;j++) {
-				// System.out.println("koordinatx:"+koordinatlarx[i]+"koordinaty:"+koordinatlary[j]);
-			}
-			}
+		goldCoordinate.remove(tRows-2);
+		goldCoordinate.remove((tColumns-1)*tRows-2);
 		
+		// -----------------------------------------------------------------
+		// GAME PANEL
+		JPanel GamePanel = new JPanel();
+		GamePanel.setBounds(0, 0, 584, 561);
+		contentPane.add(GamePanel);
+		GamePanel.setVisible(true);
+		GamePanel.setLayout(new GridLayout(tColumns,tRows));	
+		GamePanel.setBackground(Color.DARK_GRAY);
 		
+		JLabel[][] grid = new JLabel[tColumns][tRows];
+		
+		for(i=0;i<tColumns;i++) {
+			
+			for(j=0;j<tRows;j++) {
+					
+				grid[i][j] = new JLabel("");
+                grid[i][j].setBorder(new LineBorder(Color.BLACK));
+                GamePanel.add(grid[i][j]);
+                			
+			for(int k1=0;k1<total_Gold;k1++) {
+				
+			if(((i*tRows)+j)==goldCoordinate.get(randomNum1[k1])) {
+				gColumns.add(i);
+				gRows.add(j);
+				grid[i][j].setText("5");
+				grid[i][j].setForeground(Color.YELLOW);
+                grid[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+                GamePanel.add(grid[i][j]);
+                for(int k2=0;k2<total_Secret_Gold;k2++) {
+                if(k1==randomNum2[k2]) {
+                	grid[i][j].setFont(new java.awt.Font("Lucida Grande", 1, 0));                }
+                }
+						}
+					}
+				}
+			}			
 		
 	}
 }

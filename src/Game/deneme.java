@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class deneme extends JFrame {
 
@@ -53,10 +54,11 @@ public class deneme extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel dimg = new JLabel("");
+		JLabel dimg = new JLabel("5");
+		dimg.setBackground(Color.DARK_GRAY);
+		dimg.setForeground(Color.DARK_GRAY);
 		dimg.setHorizontalAlignment(SwingConstants.CENTER);
-		dimg.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gold.jpg")).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
-		dimg.setBounds(30, 30, 30, 30);
+		dimg.setBounds(30, 30, 66, 66);
 		panel.add(dimg);
 		
 

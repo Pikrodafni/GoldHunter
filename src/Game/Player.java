@@ -8,7 +8,6 @@ public class Player {
 	public int max_Move;
 	public int move_Cost;
 	public int choosing_Target_Cost;
-	public int rows, columns;
 	// -------------------------------------------------------------
 	// Constructor
 	// -------------------------------------------------------------
@@ -28,8 +27,6 @@ public class Player {
 		this.gold = 200;
 		this.max_Move = 3;
 		this.move_Cost = 5;
-		this.rows = 20;
-		this.columns = 20;
 	}
 	// -------------------------------------------------------------
 	// Field of Getters and Setters
