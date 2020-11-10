@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -46,7 +47,7 @@ public class MainFrame extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, tahtax, tahtay);
+		setBounds(150, 150, tahtax+100, tahtay+100);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,13 +62,15 @@ public class MainFrame extends JFrame {
 		int i=0,j=0;
 		int [] koordinatlarx = new int[tahta];
 		int [] koordinatlary = new int[tahta];
+		
+		// Get Random Number 1-397
 		int [] randomNum1 = new int[80];
 		int value=0;
 		boolean tf1 = false;
 		
 		for(int r=0;r<81;r++) {
 			
-			int temporaryRandomInt=(int)(Math.random() * (397) + 1);
+			int temporaryRandomInt=(int)(Math.random() * (395) + 1);
 			
 			for(int g=0;g<80;g++) {
 				if(randomNum1[g]==temporaryRandomInt)
@@ -86,7 +89,21 @@ public class MainFrame extends JFrame {
 				break;
 			}
 		}
+		// -----------------------------------------------------------------
 		
+		ArrayList<Integer> goldCoordinate = new ArrayList<Integer>();
+		for(i=1;i<399;i++) {
+			goldCoordinate.add(i);
+		}
+		goldCoordinate.remove(18);
+		goldCoordinate.remove(378);
+		char [] dimg2 = new char [300];
+		int dimgNum=0;
+		for(char h='a';h<='z';h++) {
+			dimg2[dimgNum]=h;
+			System.out.println(dimg2[dimgNum]);
+			dimgNum++;
+		}
 		for(i=0;i<tahta;i++) {
 			
 			for(j=0;j<tahta;j++) {
@@ -100,11 +117,16 @@ public class MainFrame extends JFrame {
 			contentPane.add(panel);
 			panel.setBackground(Color.CYAN);
 			
+			for(int k=0;k<80;k++) {
+				
+			if((i*tahta)+j==goldCoordinate.get(randomNum1[k])) {
+				
 			JLabel dimg = new JLabel("");
 			dimg.setHorizontalAlignment(SwingConstants.CENTER);
 			dimg.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gold.jpg")).getImage().getScaledInstance(artis1-5, artis2+10, Image.SCALE_SMOOTH)));
 			panel.add(dimg);
-			
+			}
+			}
 			}
 		}
 		for(i=0;i<tahta;i++) {
