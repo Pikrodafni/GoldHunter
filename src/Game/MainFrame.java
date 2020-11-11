@@ -134,6 +134,8 @@ public class MainFrame extends JFrame {
 		
 		// -----------------------------------------------------------------
 		// GAME PANEL
+		
+		
 		JPanel GamePanel = new JPanel();
 		GamePanel.setBounds(0, 0, 584, 561);
 		contentPane.add(GamePanel);
@@ -142,7 +144,9 @@ public class MainFrame extends JFrame {
 		GamePanel.setBackground(Color.DARK_GRAY);
 		
 		JLabel[][] grid = new JLabel[tColumns][tRows];
-		
+		int [][] GoldCoordinate = new int[total_Gold][2];
+		int [][] SecretGoldCoordinate = new int[total_Gold][2];
+		int sayac=0,sayac2=0;
 		for(i=0;i<tColumns;i++) {
 			
 			for(j=0;j<tRows;j++) {
@@ -159,15 +163,95 @@ public class MainFrame extends JFrame {
 				grid[i][j].setText("5");
 				grid[i][j].setForeground(Color.YELLOW);
                 grid[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+                
                 GamePanel.add(grid[i][j]);
+                
                 for(int k2=0;k2<total_Secret_Gold;k2++) {
                 if(k1==randomNum2[k2]) {
-                	grid[i][j].setFont(new java.awt.Font("Lucida Grande", 1, 0));                }
+                	grid[i][j].setFont(new java.awt.Font("Lucida Grande", 1, 0)); 
+                	SecretGoldCoordinate[sayac2][0]=i;
+                	sayac2++;
+                	}
+                else {
+                	GoldCoordinate[sayac][0]=i;
+                    GoldCoordinate[sayac][1]=j;
+
                 }
+                }
+                sayac++;
 						}
 					}
 				}
-			}			
+			}
 		
+		grid[0][0].setText("A");
+		//grid[0][0].setForeground(Color.PINK);
+		//grid[0][0].setHorizontalAlignment(SwingConstants.CENTER);
+		
+		int EnyakintopuzakA=0;
+		int locationxA=0;
+		int locationyA=0;
+		int xuzak=0;
+		int yuzak=0;
+		int totaluzak=0;
+		int enkucukuzak=500;
+		int gidilecekx = 0;
+		int gidileceky = 0;
+		int totalGoldA = 0;
+		int dongu=0;
+		
+		
+			
+				for(int k=0;k<sayac;k++) {
+					int x=GoldCoordinate[k][0];
+					int y=GoldCoordinate[k][1];
+					
+					if(grid[x][y].getText()=="0"||grid[x][y].getText()=="A") {
+						continue;
+						//break;
+					}
+					
+					xuzak=GoldCoordinate[k][0]-locationxA;
+					yuzak=GoldCoordinate[k][1]-locationyA;
+					xuzak= Math.abs(xuzak);
+					yuzak= Math.abs(yuzak);
+					totaluzak=xuzak+yuzak;
+					
+					 if(totaluzak<enkucukuzak) {
+						gidilecekx=GoldCoordinate[k][0];
+						gidileceky=GoldCoordinate[k][1];
+						enkucukuzak=totaluzak;
+					}
+					
+				}
+
+		
+		if(gidilecekx+gidileceky<=3) {
+			
+		grid[locationxA][locationyA].setText("0");
+		totalGoldA=totalGoldA+Integer.parseInt(grid[gidilecekx][gidileceky].getText());
+		System.out.println("gidilecekler "+gidilecekx+" "+gidileceky);
+		grid[gidilecekx][gidileceky].setText("A");
+		grid[gidilecekx][gidileceky].setForeground(Color.PINK);
+		locationxA=gidilecekx;
+		locationyA=gidileceky;
+	}
+		else {
+			if(gidilecekx>3) {
+				locationxA=locationxA+3;
+			}
+			else if(gidileceky>3) {
+				
+			}
+			
+		}
+		System.out.println(totalGoldA);
+		//GoldCoordinate[gidilecekx][gidileceky];
+		dongu++;
+		xuzak=999999;
+		yuzak=999999;
+		totaluzak=999999;
+		enkucukuzak=999999;
+	
 	}
 }
