@@ -24,10 +24,46 @@ import javax.swing.SwingConstants;
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
+	// -----------------------------------------------------------------
+	// GamerA için hedef belirleme
+	// -----------------------------------------------------------------
+	public int[][] chooseTargetA(int goldNumber, int [][]GoldCoordinate, JLabel [][]mapCoordinate, int[][]locationxyA)
+	{	
+		int [][] targetCoordinate = new int [1][2];
+		int xuzak,yuzak,totaluzak;
+		int enkucukuzak = 500;
+		
+		locationxyA [0][0]= 0;
+		locationxyA [0][1]= 0;
+		
+		for(int k=0;k<goldNumber;k++) {
+			int x=GoldCoordinate[k][0];
+			int y=GoldCoordinate[k][1];
+			
+			if(mapCoordinate[x][y].getText()=="0"||mapCoordinate[x][y].getText()=="A") {
+				continue;
+				//break;
+			}
+			
+			xuzak=GoldCoordinate[k][0]-locationxyA[0][0];
+			yuzak=GoldCoordinate[k][1]-locationxyA[0][1];
+			xuzak= Math.abs(xuzak);
+			yuzak= Math.abs(yuzak);
+			totaluzak=xuzak+yuzak;
+			
+			 if(totaluzak<enkucukuzak) {
+				targetCoordinate[0][0]=GoldCoordinate[k][0];
+				targetCoordinate[0][1]=GoldCoordinate[k][1];
+				enkucukuzak=totaluzak;
+			}
+			
+			 
+		}
+		return targetCoordinate;
 
-	/**
-	 * Launch the application.
-	 */
+	}
+	// -----------------------------------------------------------------
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,10 +87,8 @@ public class MainFrame extends JFrame {
 		int tahta =20;
 		
 		GamerA PlayerA = new GamerA();
-		System.out.println("rank:" +PlayerA.getChoosing_Target_Cost() );
 		
 		Board GameBoard = new Board();
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(150, 150, tahtax+100, tahtay+100);
@@ -135,7 +169,6 @@ public class MainFrame extends JFrame {
 		// -----------------------------------------------------------------
 		// GAME PANEL
 		
-		
 		JPanel GamePanel = new JPanel();
 		GamePanel.setBounds(0, 0, 584, 561);
 		contentPane.add(GamePanel);
@@ -183,75 +216,66 @@ public class MainFrame extends JFrame {
 					}
 				}
 			}
-		
-		grid[0][0].setText("A");
-		//grid[0][0].setForeground(Color.PINK);
-		//grid[0][0].setHorizontalAlignment(SwingConstants.CENTER);
-		
-		int EnyakintopuzakA=0;
-		int locationxA=0;
-		int locationyA=0;
-		int xuzak=0;
-		int yuzak=0;
-		int totaluzak=0;
-		int enkucukuzak=500;
-		int gidilecekx = 0;
-		int gidileceky = 0;
-		int totalGoldA = 0;
-		int dongu=0;
-		
-		
-			
-				for(int k=0;k<sayac;k++) {
-					int x=GoldCoordinate[k][0];
-					int y=GoldCoordinate[k][1];
-					
-					if(grid[x][y].getText()=="0"||grid[x][y].getText()=="A") {
-						continue;
-						//break;
-					}
-					
-					xuzak=GoldCoordinate[k][0]-locationxA;
-					yuzak=GoldCoordinate[k][1]-locationyA;
-					xuzak= Math.abs(xuzak);
-					yuzak= Math.abs(yuzak);
-					totaluzak=xuzak+yuzak;
-					
-					 if(totaluzak<enkucukuzak) {
-						gidilecekx=GoldCoordinate[k][0];
-						gidileceky=GoldCoordinate[k][1];
-						enkucukuzak=totaluzak;
-					}
-					
-				}
+		// -----------------------------------------------------------------
+		// -----------------------------------------------------------------
 
+		grid[0][0].setText("A");
+		grid[0][0].setForeground(Color.RED);
+		grid[0][0].setHorizontalAlignment(SwingConstants.CENTER);
+			
 		
-		if(gidilecekx+gidileceky<=3) {
+		int [][] locationxyA= new int [1][2];
+		locationxyA [0][0]=0;
+		locationxyA [0][1]=0;
+		int totaluzak=0;
+		int xuzak,yuzak;
+		int totalGoldA = 0;
+		int turnNumber = 1;
+		int move = 0;
+		int whosTurn = 1;
+		int [][] targetCoordinate = new int [1][2];
+		
+		targetCoordinate = chooseTargetA(sayac,GoldCoordinate,grid,locationxyA);
+		
+		if(whosTurn==1) {
+			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.BLACK));
+			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.YELLOW);
+		while(locationxyA[0][0]!=targetCoordinate[0][0] && move!=3) {
+			grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
 			
-		grid[locationxA][locationyA].setText("0");
-		totalGoldA=totalGoldA+Integer.parseInt(grid[gidilecekx][gidileceky].getText());
-		System.out.println("gidilecekler "+gidilecekx+" "+gidileceky);
-		grid[gidilecekx][gidileceky].setText("A");
-		grid[gidilecekx][gidileceky].setForeground(Color.PINK);
-		locationxA=gidilecekx;
-		locationyA=gidileceky;
-	}
-		else {
-			if(gidilecekx>3) {
-				locationxA=locationxA+3;
-			}
-			else if(gidileceky>3) {
-				
-			}
-			
+			locationxyA[0][0]++;
+			move++;
 		}
+		while(locationxyA[0][1]!=targetCoordinate[0][1] && move!=3) {
+			grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
+			
+			locationxyA[0][1]++;
+			move++;
+		}
+		
+		if(locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]) {
+		totalGoldA=totalGoldA+Integer.parseInt(grid[targetCoordinate[0][0]][targetCoordinate[0][1]].getText());
+		}
+		//grid[locationxyA[0][0]][locationxyA[0][1]].setText("A");
+		grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
+		grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
+		grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
+		
+		//whosTurn = 2;
+		move = 0;
+		}
+					
+		System.out.println("gidilecekler "+targetCoordinate[0][0]+" "+targetCoordinate[0][1]);
+		
+		
+	
 		System.out.println(totalGoldA);
-		//GoldCoordinate[gidilecekx][gidileceky];
-		dongu++;
+		/*
 		xuzak=999999;
 		yuzak=999999;
 		totaluzak=999999;
-		enkucukuzak=999999;
+		enkucukuzak=999999;*/
+		
 	
 	}
 }
