@@ -217,6 +217,7 @@ public class MainFrame extends JFrame {
 			
 			if(locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]) {	
 				targetCoordinate = gmA.chooseTargetA(sayac,GoldCoordinate,locationxyA);
+				totalGoldA=totalGoldA-5;// hedef belirleme maaliyeti
 				
 				}
 			System.out.println("b :" + b);
@@ -309,6 +310,8 @@ public class MainFrame extends JFrame {
 		}
 		
 		}
+		totalGoldA=totalGoldA-5;//adým atma maaliyeti
+		System.out.println(totalGoldA);
 		moveA = 0;			
 		}
 	

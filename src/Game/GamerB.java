@@ -15,7 +15,8 @@ public class GamerB extends Player {
 	public int[][] chooseTargetA(int sayac, int [][]GoldCoordinate, int[][]locationxyA)
 	{	
 		int [][] targetCoordinate = new int [1][2];
-		int xuzak,yuzak,totaluzak;
+		int xuzak,yuzak;
+		int [] totaluzak = new int[sayac];
 		int enkucukuzak = 999999;
 		
 		for(int k=0;k<sayac;k++) {
@@ -25,12 +26,12 @@ public class GamerB extends Player {
 			yuzak=GoldCoordinate[k][1]-locationxyA[0][1];
 			xuzak= Math.abs(xuzak);
 			yuzak= Math.abs(yuzak);
-			totaluzak=xuzak+yuzak;
+			totaluzak[k]=xuzak+yuzak;
 			
-			 if(totaluzak<enkucukuzak) {
+			 if(totaluzak[k]<enkucukuzak) {
 				targetCoordinate[0][0]=GoldCoordinate[k][0];
 				targetCoordinate[0][1]=GoldCoordinate[k][1];
-				enkucukuzak=totaluzak;
+				enkucukuzak=totaluzak[k];
 			}
 			
 			 
