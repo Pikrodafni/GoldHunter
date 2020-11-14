@@ -64,8 +64,8 @@ public class deneme extends JFrame {
 		
 		Board GameBoard = new Board();
 		System.out.println("Gameboard :"+GameBoard.getGold_Number());
-		GameBoard.setGold_Number(30);
-		System.out.println("Gameboard :"+GameBoard.getGold_Number());
+		int adim=5/3;
+		System.out.println("Gameboard :"+adim);
 		
 	}
 }
