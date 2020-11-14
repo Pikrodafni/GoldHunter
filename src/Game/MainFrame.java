@@ -213,7 +213,6 @@ public class MainFrame extends JFrame {
 		targetCoordinate[0][1]=0;
 		
 		GamerA gmA = new GamerA();
-		
 		for(int b=0;b<12;b++) {
 			
 			if(locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]) {	
@@ -232,6 +231,15 @@ public class MainFrame extends JFrame {
 			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
 			moveA++;
+			for(int scrt=0;scrt<sayac2;scrt++) {
+				if(locationxyA[0][0]==SecretGoldCoordinate[scrt][0] && locationxyA[0][1]==SecretGoldCoordinate[scrt][1])
+				{
+					grid[locationxyA[0][0]][locationxyA[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+					grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.MAGENTA);
+					totalGoldA=totalGoldA+Integer.parseInt(grid[locationxyA[0][0]][locationxyA[0][1]].getText());
+					System.out.println("girdi girdi");
+				}
+			}
 		}
 		}
 		else {
@@ -241,6 +249,15 @@ public class MainFrame extends JFrame {
 				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
 				moveA++;
+				for(int scrt=0;scrt<sayac2;scrt++) {
+					if(locationxyA[0][0]==SecretGoldCoordinate[scrt][0] && locationxyA[0][1]==SecretGoldCoordinate[scrt][1])
+					{
+						grid[locationxyA[0][0]][locationxyA[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+						grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.MAGENTA);
+						totalGoldA=totalGoldA+Integer.parseInt(grid[locationxyA[0][0]][locationxyA[0][1]].getText());
+						System.out.println("girdi girdi");
+					}
+				}
 			}
 			
 		}
@@ -251,6 +268,15 @@ public class MainFrame extends JFrame {
 			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
 			moveA++;
+			for(int scrt=0;scrt<sayac2;scrt++) {
+				if(locationxyA[0][0]==SecretGoldCoordinate[scrt][0] && locationxyA[0][1]==SecretGoldCoordinate[scrt][1])
+				{
+					grid[locationxyA[0][0]][locationxyA[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+					grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.MAGENTA);
+					totalGoldA=totalGoldA+Integer.parseInt(grid[locationxyA[0][0]][locationxyA[0][1]].getText());
+					System.out.println("girdi girdi");
+				}
+			}
 		}
 		}else {
 			while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
@@ -259,6 +285,15 @@ public class MainFrame extends JFrame {
 				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
 				moveA++;
+				for(int scrt=0;scrt<sayac2;scrt++) {
+					if(locationxyA[0][0]==SecretGoldCoordinate[scrt][0] && locationxyA[0][1]==SecretGoldCoordinate[scrt][1])
+					{
+						grid[locationxyA[0][0]][locationxyA[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+						grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.MAGENTA);
+						totalGoldA=totalGoldA+Integer.parseInt(grid[locationxyA[0][0]][locationxyA[0][1]].getText());
+						System.out.println("girdi girdi");
+					}
+				}
 			}
 		}
 		
