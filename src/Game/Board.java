@@ -11,11 +11,12 @@ public class Board {
 	public int gold_Rate;
 	public int secret_Gold_Rate;
 	public int secret_Gold_Number;
+	public int [] gold_Value;
 	
 	// -------------------------------------------------------------
 	// Constructor 
 	// -------------------------------------------------------------
-	public Board(int rows, int columns, int gold_Rate, int secret_Gold_Rate, int gold_Number, int secret_Gold_Number) {
+	public Board(int rows, int columns, int gold_Rate, int secret_Gold_Rate, int gold_Number, int secret_Gold_Number, int [] gold_Value) {
 		super();
 		this.rows = rows;
 		this.columns = columns;
@@ -23,6 +24,7 @@ public class Board {
 		this.secret_Gold_Rate = secret_Gold_Rate;
 		this.gold_Number = gold_Number;
 		this.secret_Gold_Number = secret_Gold_Number;
+		this.gold_Value= gold_Value;
 	}
 	// -------------------------------------------------------------
 	// Default Values
@@ -75,6 +77,13 @@ public class Board {
 	public void setSecret_Gold_Number(int secret_Gold_Number) {
 		this.secret_Gold_Number = secret_Gold_Number;
 	}
+	public int[] getGold_Value() {
+		return gold_Value;
+	}
+	public void setGold_Value(int[] gold_Value) {
+		this.gold_Value = gold_Value;
+	}
+	
 	
 	
 	// -------------------------------------------------------------

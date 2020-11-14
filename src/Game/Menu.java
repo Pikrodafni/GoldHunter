@@ -20,6 +20,14 @@ import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 import java.awt.ComponentOrientation;
 import javax.swing.ImageIcon;
+import javax.swing.JProgressBar;
+import javax.swing.JComboBox;
+import javax.swing.JSlider;
+import javax.swing.JScrollBar;
+import javax.swing.JTree;
+import javax.swing.JButton;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.BevelBorder;
 
 public class Menu extends JFrame {
 
@@ -28,6 +36,10 @@ public class Menu extends JFrame {
 	private JTextField textColumns;
 	private JTextField goldRate;
 	private JTextField secretGoldRate;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 
 	/**
@@ -67,7 +79,7 @@ public class Menu extends JFrame {
 		labelSetting.setForeground(SystemColor.info);
 		labelSetting.setFont(new Font("Tahoma", Font.BOLD, 15));
 		labelSetting.setHorizontalAlignment(SwingConstants.CENTER);
-		labelSetting.setBounds(62, 101, 174, 52);
+		labelSetting.setBounds(62, 101, 174, 36);
 		panel.add(labelSetting);
 		
 		textRows = new JTextField();
@@ -180,6 +192,123 @@ public class Menu extends JFrame {
 		minerLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/images/miner.png")));
 		minerLabel_1.setBounds(765, 19, 100, 80);
 		panel.add(minerLabel_1);
+		
+		JLabel lblPlayerSettings = new JLabel("Player Settings");
+		lblPlayerSettings.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerSettings.setForeground(SystemColor.info);
+		lblPlayerSettings.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPlayerSettings.setBounds(730, 101, 174, 42);
+		panel.add(lblPlayerSettings);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(672, 163, 292, 2);
+		panel.add(separator_3);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(672, 335, 292, 2);
+		panel.add(separator_4);
+		
+		JSeparator separator_2_2 = new JSeparator();
+		separator_2_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2_2.setBounds(672, 165, 2, 172);
+		panel.add(separator_2_2);
+		
+		JSeparator separator_2_3 = new JSeparator();
+		separator_2_3.setOrientation(SwingConstants.VERTICAL);
+		separator_2_3.setBounds(962, 165, 2, 172);
+		panel.add(separator_2_3);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Gold :");
+		lblNewLabel_1_2.setForeground(SystemColor.activeCaption);
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1_2.setBackground(Color.WHITE);
+		lblNewLabel_1_2.setBounds(682, 175, 150, 30);
+		panel.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Max Move :");
+		lblNewLabel_1_3.setForeground(SystemColor.activeCaption);
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1_3.setBackground(Color.WHITE);
+		lblNewLabel_1_3.setBounds(684, 215, 150, 30);
+		panel.add(lblNewLabel_1_3);
+		
+		JLabel lblNewLabel_1_4 = new JLabel("Move Cost :");
+		lblNewLabel_1_4.setForeground(SystemColor.activeCaption);
+		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1_4.setBackground(Color.WHITE);
+		lblNewLabel_1_4.setBounds(684, 255, 150, 30);
+		panel.add(lblNewLabel_1_4);
+		
+		JLabel lblNewLabel_1_5 = new JLabel("Target Cost :");
+		lblNewLabel_1_5.setForeground(SystemColor.activeCaption);
+		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1_5.setBackground(Color.WHITE);
+		lblNewLabel_1_5.setBounds(684, 295, 150, 30);
+		panel.add(lblNewLabel_1_5);
+		
+		textField = new JTextField();
+		textField.setText("200");
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setColumns(10);
+		textField.setBackground(SystemColor.info);
+		textField.setBounds(844, 184, 60, 25);
+		panel.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("3");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setColumns(10);
+		textField_1.setBackground(SystemColor.info);
+		textField_1.setBounds(844, 224, 60, 25);
+		panel.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("5");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setColumns(10);
+		textField_2.setBackground(SystemColor.info);
+		textField_2.setBounds(844, 264, 60, 25);
+		panel.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("10");
+		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_3.setColumns(10);
+		textField_3.setBackground(SystemColor.info);
+		textField_3.setBounds(844, 304, 60, 25);
+		panel.add(textField_3);
+		
+		JButton btnNewButton_1 = new JButton("GamerA");
+		btnNewButton_1.setBorder(new LineBorder(new Color(204, 204, 255), 2));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1.setBackground(new Color(204, 255, 204));
+		btnNewButton_1.setForeground(Color.BLACK);
+		btnNewButton_1.setBounds(672, 144, 65, 21);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("GamerB");
+		btnNewButton_1_1.setForeground(Color.BLACK);
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1_1.setBorder(new LineBorder(new Color(204, 204, 255), 2));
+		btnNewButton_1_1.setBackground(new Color(255, 204, 255));
+		btnNewButton_1_1.setBounds(742, 144, 65, 21);
+		panel.add(btnNewButton_1_1);
+		
+		JButton btnNewButton_1_2 = new JButton("GamerC");
+		btnNewButton_1_2.setForeground(Color.BLACK);
+		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1_2.setBorder(new LineBorder(new Color(204, 204, 255), 2));
+		btnNewButton_1_2.setBackground(new Color(204, 255, 255));
+		btnNewButton_1_2.setBounds(812, 144, 65, 21);
+		panel.add(btnNewButton_1_2);
+		
+		JButton btnNewButton_1_3 = new JButton("GamerD");
+		btnNewButton_1_3.setForeground(Color.BLACK);
+		btnNewButton_1_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1_3.setBorder(new LineBorder(new Color(204, 204, 255), 2));
+		btnNewButton_1_3.setBackground(new Color(255, 255, 204));
+		btnNewButton_1_3.setBounds(882, 144, 65, 21);
+		panel.add(btnNewButton_1_3);
 		
 	}
 }

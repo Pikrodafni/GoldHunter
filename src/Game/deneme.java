@@ -62,6 +62,10 @@ public class deneme extends JFrame {
 		dimg.setBounds(30, 30, 66, 66);
 		panel.add(dimg);
 		
+		Board GameBoard = new Board();
+		System.out.println("Gameboard :"+GameBoard.getGold_Number());
+		GameBoard.setGold_Number(30);
+		System.out.println("Gameboard :"+GameBoard.getGold_Number());
 		
 	}
 }

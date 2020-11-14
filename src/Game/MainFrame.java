@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 	{	
 		int [][] targetCoordinate = new int [1][2];
 		int xuzak,yuzak,totaluzak;
-		int enkucukuzak = 99999;
+		int enkucukuzak = 999999;
 		
 		for(int k=0;k<sayac;k++) {
 			
@@ -165,7 +165,14 @@ public class MainFrame extends JFrame {
 		JLabel[][] grid = new JLabel[tColumns][tRows];
 		int [][] GoldCoordinate = new int[total_Gold][2];
 		int [][] SecretGoldCoordinate = new int[total_Gold][2];
+		
+		Player gamerA = new GamerA();
+		int [] goldValue = {5,10,15,20};
+		String s = String.valueOf(false);
+		int ata = 0;
+		
 		int sayac=0,sayac2=0;
+		
 		for(i=0;i<tColumns;i++) {
 			
 			for(j=0;j<tRows;j++) {
@@ -177,10 +184,15 @@ public class MainFrame extends JFrame {
 			for(int k1=0;k1<total_Gold;k1++) {
 				
 			if(((i*tRows)+j)==goldCoordinate.get(randomNum1[k1])) {
-			
-				grid[i][j].setText("5");
-				grid[i][j].setForeground(Color.YELLOW);
-                grid[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+					
+					s=String.valueOf(goldValue[ata]);
+					grid[i][j].setText(s);
+					grid[i][j].setForeground(Color.YELLOW);
+	                grid[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+	                ata++;
+	                if(ata==4) {
+	                	ata=0;
+	                }
                 
                 GamePanel.add(grid[i][j]);
                 
@@ -208,16 +220,15 @@ public class MainFrame extends JFrame {
 		grid[0][0].setForeground(Color.RED);
 		grid[0][0].setHorizontalAlignment(SwingConstants.CENTER);
 			
-		
+		int [][] targetCoordinate = new int [1][2];
 		int [][] locationxyA= new int [1][2];
 		locationxyA [0][0]=0;
 		locationxyA [0][1]=0;
-		int totalGoldA = 0;
-		int move = 0;
+		int totalGoldA = gamerA.getGold();
+		int moveA = gamerA.getMax_Move();
 		int whosTurn = 1;
-		int [][] targetCoordinate = new int [1][2];
 		int targetLengthx,targetLengthy;
-		
+		// A için altýn hedefi belirleme :
 		targetCoordinate = chooseTargetA(sayac,GoldCoordinate,locationxyA);
 		
 		
@@ -229,43 +240,43 @@ public class MainFrame extends JFrame {
 			targetLengthx = targetCoordinate[0][0] - locationxyA[0][0];
 			targetLengthy = targetCoordinate[0][1] - locationxyA[0][1];
 		if(targetLengthx > 0) {
-		while(locationxyA[0][0]!=targetCoordinate[0][0] && move!=3) {
+		while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
 			//grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
 			locationxyA[0][0]=locationxyA[0][0]+1;
 			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
 			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
-			move++;
+			moveA++;
 		}
 		}
 		else {
-			while(locationxyA[0][0]!=targetCoordinate[0][0] && move!=3) {
+			while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
 				//grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
 				locationxyA[0][0]=locationxyA[0][0]-1;
 				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
 				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
-				move++;
+				moveA++;
 			}
 			
 		}
 		if(targetLengthy>0) {
-		while(locationxyA[0][1]!=targetCoordinate[0][1] && move!=3) {
+		while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
 			//grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
 			locationxyA[0][1]=locationxyA[0][1]+1;
 			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
 			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
-			move++;
+			moveA++;
 		}
 		}else {
-			while(locationxyA[0][1]!=targetCoordinate[0][1] && move!=3) {
+			while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
 				//grid[locationxyA[0][0]][locationxyA[0][1]].setText("");
 				locationxyA[0][1]=locationxyA[0][1]-1;
 				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
 				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
 				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
-				move++;
+				moveA++;
 			}
 		}
 		
@@ -286,15 +297,12 @@ public class MainFrame extends JFrame {
 		grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
 		
 		//whosTurn = 2;
-		move = 0;
+		moveA = 0;
 		}
 					
-	
 		}
-		
 	
 		System.out.println(totalGoldA);
-	
 		
 	
 	}
