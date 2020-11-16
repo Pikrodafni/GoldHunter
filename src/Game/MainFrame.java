@@ -320,9 +320,10 @@ public class MainFrame extends JFrame {
 		// -----------------------------------------------------------------
 		// B için altýn hedefi belirleme :
 		// -----------------------------------------------------------------
-		grid[0][9].setText("0");
-		grid[0][9].setForeground(Color.RED);
-		grid[0][9].setHorizontalAlignment(SwingConstants.CENTER);
+		/*
+		grid[0][tRows-1].setText("0");
+		grid[0][tRows-1].setForeground(Color.RED);
+		grid[0][tRows-1].setHorizontalAlignment(SwingConstants.CENTER);
 		
 		Player gamerB = new GamerB();
 		GamerB gmB = new GamerB();
@@ -437,6 +438,128 @@ public class MainFrame extends JFrame {
 		totalGoldB=totalGoldB-5;//adým atma maaliyeti
 		System.out.println(totalGoldB);
 		moveB = 0;			
+		}*/
+		
+		// -----------------------------------------------------------------
+		// B için altýn hedefi belirleme :
+		// -----------------------------------------------------------------
+		
+		grid[tColumns-1][tRows-1].setText("0");
+		grid[tColumns-1][tRows-1].setForeground(Color.RED);
+		grid[tColumns-1][tRows-1].setHorizontalAlignment(SwingConstants.CENTER);
+		
+		Player gamerC = new GamerC();
+		GamerC gmC = new GamerC();
+		int [][] targetCoordinateC = new int [1][2];
+		int [][] locationxyC= new int [1][2];
+		locationxyC [0][0]=tColumns-1;
+		locationxyC [0][1]=tRows-1;
+		int totalGoldC = gamerC.getGold();
+		int moveC = 0;
+		int targetLengthxC,targetLengthyC;
+		targetCoordinateC[0][0]=tColumns-1;
+		targetCoordinateC[0][1]=tRows-1;
+		
+		for(int b=0;b<12;b++) {
+			
+			if(locationxyC[0][1]==targetCoordinateC[0][1] && locationxyC[0][0]==targetCoordinateC[0][0]) {
+				
+				targetCoordinateC = gmC.chooseTargetC(sayac,GoldCoordinate,locationxyC,grid);
+				totalGoldC=totalGoldC-5;// hedef belirleme maaliyeti
+				}
+			System.out.println("b :" + b);
+			System.out.println("gidilecekler "+targetCoordinateC[0][0]+" "+targetCoordinateC[0][1]);
+		
+			targetLengthxC = targetCoordinateC[0][0] - locationxyC[0][0];
+			targetLengthyC = targetCoordinateC[0][1] - locationxyC[0][1];
+		if(targetLengthxC > 0) {
+		while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
+			locationxyC[0][0]=locationxyC[0][0]+1;
+			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
+			grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
+			moveC++;
+			for(int scrt=0;scrt<sayac2;scrt++) {
+				if(locationxyC[0][0]==SecretGoldCoordinate[scrt][0] && locationxyC[0][1]==SecretGoldCoordinate[scrt][1])
+				{
+					grid[locationxyC[0][0]][locationxyC[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+					grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.MAGENTA);
+					totalGoldC=totalGoldC+Integer.parseInt(grid[locationxyC[0][0]][locationxyC[0][1]].getText());
+					System.out.println("girdi girdi");
+				}
+			}
+		}
+		}
+		else {
+			while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
+				locationxyC[0][0]=locationxyC[0][0]-1;
+				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
+				grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
+				moveC++;
+				for(int scrt=0;scrt<sayac2;scrt++) {
+					if(locationxyC[0][0]==SecretGoldCoordinate[scrt][0] && locationxyC[0][1]==SecretGoldCoordinate[scrt][1])
+					{
+						grid[locationxyC[0][0]][locationxyC[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+						grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.MAGENTA);
+						totalGoldC=totalGoldC+Integer.parseInt(grid[locationxyC[0][0]][locationxyC[0][1]].getText());
+						System.out.println("girdi girdi");
+					}
+				}
+			}
+			
+		}
+		if(targetLengthyC > 0) {
+		while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
+			locationxyC[0][1]=locationxyC[0][1]+1;
+			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
+			grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
+			moveC++;
+			for(int scrt=0;scrt<sayac2;scrt++) {
+				if(locationxyC[0][0]==SecretGoldCoordinate[scrt][0] && locationxyC[0][1]==SecretGoldCoordinate[scrt][1])
+				{
+					grid[locationxyC[0][0]][locationxyC[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+					grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.MAGENTA);
+					totalGoldC=totalGoldC+Integer.parseInt(grid[locationxyC[0][0]][locationxyC[0][1]].getText());
+					System.out.println("girdi girdi");
+				}
+			}
+		}
+		}else {
+			while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
+				locationxyC[0][1]=locationxyC[0][1]-1;
+				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
+				grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
+				moveC++;
+				for(int scrt=0;scrt<sayac2;scrt++) {
+					if(locationxyC[0][0]==SecretGoldCoordinate[scrt][0] && locationxyC[0][1]==SecretGoldCoordinate[scrt][1])
+					{
+						grid[locationxyC[0][0]][locationxyC[0][1]].setFont(new Font("Tahoma", Font.BOLD, 12));
+						grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.MAGENTA);
+						totalGoldC=totalGoldC+Integer.parseInt(grid[locationxyC[0][0]][locationxyC[0][1]].getText());
+						System.out.println("girdi girdi");
+					}
+				}
+			}
+		}
+		
+		if(locationxyC[0][1]==targetCoordinateC[0][1] && locationxyC[0][0]==targetCoordinateC[0][0]) {
+			
+		totalGoldC=totalGoldC+Integer.parseInt(grid[targetCoordinateC[0][0]][targetCoordinateC[0][1]].getText());
+		
+		for(int a=0;a<total_Gold;a++) {
+			if(GoldCoordinate[a][0]==targetCoordinateC[0][0] && GoldCoordinate[a][1]==targetCoordinateC[0][1]) {
+				GoldCoordinate[a][0]=99;
+				GoldCoordinate[a][1]=99;
+			}
+		}
+		
+		}
+		totalGoldC=totalGoldC-5;//adým atma maaliyeti
+		System.out.println(totalGoldC);
+		moveC = 0;			
 		}
 	
 		
