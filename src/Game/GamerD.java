@@ -24,7 +24,7 @@ public class GamerD extends Player {
 		int [] totaluzak = new int[sayac];
 		int adim=0,kalan;
 		int [] uygunSecim = new int[sayac];
-		int enMantikli=0;
+		int enMantikli=-10000;
 		int [] targetK = new int[3];
 		int targetABC=1;
 	

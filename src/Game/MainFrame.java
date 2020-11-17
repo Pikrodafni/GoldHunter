@@ -288,7 +288,8 @@ public class MainFrame extends JFrame {
         		//for(int b=0;b<12;b++) {
         			
         			if( locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]  ) {	
-        				targetCoordinate = gmA.chooseTargetA(sayac,GoldCoordinate,locationxyA);
+        				
+        				targetCoordinate = gmA.chooseTargetA(total_Gold,GoldCoordinate,locationxyA);
         				totalGoldA=totalGoldA-gmA.getChoosing_Target_Cost();// hedef belirleme maaliyeti
         				
         				}
@@ -386,7 +387,7 @@ public class MainFrame extends JFrame {
         			//System.out.println("gidilecekler "+targetCoordinateB[0][0]+" "+targetCoordinateB[0][1]);
         			if( locationxyB[0][1]==targetCoordinateB[0][1] && locationxyB[0][0]==targetCoordinateB[0][0] ) {
         				
-        				targetCoordinateB = gmB.chooseTargetB(sayac,GoldCoordinate,locationxyB,grid);
+        				targetCoordinateB = gmB.chooseTargetB(total_Gold,GoldCoordinate,locationxyB,grid);
         				totalGoldB=totalGoldB-gmB.getChoosing_Target_Cost();// hedef belirleme maaliyeti
         				}
         			//System.out.println("b :" + b);
@@ -511,7 +512,7 @@ public class MainFrame extends JFrame {
         					}
         				}
         				
-        				targetCoordinateC = gmC.chooseTargetC(sayac+tmp,GoldCoordinate,locationxyC,grid);
+        				targetCoordinateC = gmC.chooseTargetC(total_Gold,GoldCoordinate,locationxyC,grid);
         				totalGoldC=totalGoldC-gmC.getChoosing_Target_Cost();// hedef belirleme maaliyeti
         				
         				
@@ -600,9 +601,9 @@ public class MainFrame extends JFrame {
         				// D için altın hedefi belirleme :
         				// -----------------------------------------------------------------
         				
-        				int hamleA = gmA.adimSayisiA(sayac,GoldCoordinate,locationxyA);
-        				int hamleB = gmB.adimSayisiB(sayac, GoldCoordinate, locationxyB, grid);
-        				int hamleC = gmC.adimSayisiC(sayac2, GoldCoordinate, locationxyC, grid);
+        				int hamleA = gmA.adimSayisiA(total_Gold,GoldCoordinate,locationxyA);
+        				int hamleB = gmB.adimSayisiB(total_Gold, GoldCoordinate, locationxyB, grid);
+        				int hamleC = gmC.adimSayisiC(total_Gold, GoldCoordinate, locationxyC, grid);
         				grid[tColumns-1][0].setText("0");
         				grid[tColumns-1][0].setForeground(Color.RED);
         				grid[tColumns-1][0].setHorizontalAlignment(SwingConstants.CENTER);
@@ -613,7 +614,7 @@ public class MainFrame extends JFrame {
         					
         					if(locationxyD[0][1]==targetCoordinateD[0][1] && locationxyD[0][0]==targetCoordinateD[0][0]) {
         						
-        						targetCoordinateD = gmD.chooseTargetD(sayac,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
+        						targetCoordinateD = gmD.chooseTargetD(total_Gold,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
         						totalGoldD=totalGoldD-gmD.getChoosing_Target_Cost();// hedef belirleme maaliyeti
         						}
         					

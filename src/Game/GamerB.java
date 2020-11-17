@@ -21,7 +21,7 @@ public class GamerB extends Player {
 		int [] totaluzak = new int[sayac];
 		int adim=0,kalan;
 		int [] uygunSecim = new int[sayac];
-		int enMantikli=0;
+		int enMantikli=-10000;
 		int targetK=0;
 		
 		for(int k=0;k<sayac;k++) {

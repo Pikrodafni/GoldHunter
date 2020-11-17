@@ -22,7 +22,7 @@ public class GamerC extends Player {
 		int [] totaluzak = new int[sayac];
 		int adim=0,kalan;
 		int [] uygunSecim = new int[sayac];
-		int enMantikli=0;
+		int enMantikli=-10000;
 		int targetK=0;
 		
 		for(int k=0;k<sayac;k++) {
@@ -61,16 +61,13 @@ public class GamerC extends Player {
 	public int[][] openSecretGold(int sayac,int sayac2, int [][]GoldCoordinate,int [][]SecretGoldCoordinate, int[][]locationxyB, JLabel [][] grid)
 	{
 		int [][] openGold = new int [1][2];
-		int xuzak=0,yuzak=0,enyakin=999,targetK=0;
+		int xuzak=0,yuzak=0,enyakin=9999,targetK=0;
 		int [] totaluzak = new int[sayac2];
 		
 		for(int k=0;k<sayac2;k++) {
-			if(SecretGoldCoordinate[k][0]== 99 && SecretGoldCoordinate[k][1] == 99) {
-				continue;
-				}
 			
 			xuzak=SecretGoldCoordinate[k][0]-locationxyB[0][0];
-			yuzak=SecretGoldCoordinate[k][1]-locationxyB[0][0];
+			yuzak=SecretGoldCoordinate[k][1]-locationxyB[0][1];
 			xuzak= Math.abs(xuzak);
 			yuzak= Math.abs(yuzak);
 			totaluzak[k]=xuzak+yuzak;
