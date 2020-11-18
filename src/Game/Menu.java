@@ -122,6 +122,12 @@ public class Menu extends JFrame {
 		btnNewButton.setForeground(SystemColor.menuText);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
 			}
 		});
 		btnNewButton.setBounds(400, 413, 192, 52);

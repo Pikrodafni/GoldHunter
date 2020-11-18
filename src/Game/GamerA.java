@@ -20,7 +20,9 @@ public class GamerA extends Player {
 		int enkucukuzak = 999999999;
 		
 		for(int k=0;k<sayac;k++) {
-			
+			if(GoldCoordinate[k][0]==locationxyA[0][0]&&GoldCoordinate[k][1]==locationxyA[0][1]) {
+				continue;
+			}
 			
 			xuzak=GoldCoordinate[k][0]-locationxyA[0][0];
 			yuzak=GoldCoordinate[k][1]-locationxyA[0][1];

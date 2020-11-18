@@ -284,20 +284,32 @@ public class MainFrame extends JFrame {
    }
             	if(devam==true) {
             		
-            	
-        		//for(int b=0;b<12;b++) {
-        			
-        			if( locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]  ) {	
+            	if(totalGoldA>0) {		//A oyuncusu
+            		
+        			if( locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]  ) {
         				
         				targetCoordinate = gmA.chooseTargetA(total_Gold,GoldCoordinate,locationxyA);
-        				totalGoldA=totalGoldA-gmA.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        				
+        				if(targetCoordinate[0][0]!=99&&targetCoordinate[0][1]!=99) {
+        					totalGoldA=totalGoldA-gmA.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+						}
+        				
+        				
         				
         				}
         			//System.out.println("b :" + b);
         			System.out.println("gidileceklerA "+targetCoordinate[0][0]+" "+targetCoordinate[0][1]);
         			
-        			targetLengthx = targetCoordinate[0][0] - locationxyA[0][0];
-        			targetLengthy = targetCoordinate[0][1] - locationxyA[0][1];
+        			if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        				targetLengthx = targetCoordinate[0][0] - locationxyA[0][0];
+        				targetLengthy = targetCoordinate[0][1] - locationxyA[0][1];
+            			}
+            			else {
+            				targetLengthx=0;
+            				targetLengthy=0;
+            			}
+
+        			
         			
         		if(targetLengthx > 0) {
         		while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
@@ -365,37 +377,53 @@ public class MainFrame extends JFrame {
         		}
         		
         		}
+        		if(moveA!=0) {
         		totalGoldA=totalGoldA-gmA.getMove_Cost();//adým atma maaliyeti
-        		System.out.println("TotalA"+totalGoldA);
+        		System.out.println("TotalA "+totalGoldA);
+        		gmA.setGold(totalGoldA);
+        		}
+        		
         		moveA = 0;			
         		//}
-        	
+            	}
         		
         		
         		// -----------------------------------------------------------------
         		// B için altýn hedefi belirleme :
         		// -----------------------------------------------------------------
         		
-        		grid[0][tRows-1].setText("0");
+            	grid[0][tRows-1].setText("0");
         		grid[0][tRows-1].setForeground(Color.RED);
         		grid[0][tRows-1].setHorizontalAlignment(SwingConstants.CENTER);
-        		
-        		
-        		
+         
         		//for(int b=0;b<12;b++) {
         			//System.out.println("lokasyonx:"+locationxyB[0][0]+"lokasyony"+locationxyB[0][1]);
         			//System.out.println("gidilecekler "+targetCoordinateB[0][0]+" "+targetCoordinateB[0][1]);
+            	
+            	if(totalGoldB>0) {
+            		
+            	
         			if( locationxyB[0][1]==targetCoordinateB[0][1] && locationxyB[0][0]==targetCoordinateB[0][0] ) {
         				
         				targetCoordinateB = gmB.chooseTargetB(total_Gold,GoldCoordinate,locationxyB,grid);
-        				totalGoldB=totalGoldB-gmB.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        				
+        				if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        					totalGoldB=totalGoldB-gmB.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        					
+						}
+        				
         				}
         			//System.out.println("b :" + b);
         			System.out.println("gidileceklerB "+targetCoordinateB[0][0]+" "+targetCoordinateB[0][1]);
-        			
+        			if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        				
         			targetLengthxB = targetCoordinateB[0][0] - locationxyB[0][0];
         			targetLengthyB = targetCoordinateB[0][1] - locationxyB[0][1];
-        			
+        			}
+        			else {
+        				targetLengthxB=0;
+        				targetLengthyB=0;
+        			}
         		if(targetLengthxB > 0) {
         		while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=3) {
         			locationxyB[0][0]=locationxyB[0][0]+1;
@@ -462,9 +490,14 @@ public class MainFrame extends JFrame {
         		}
         		
         		}
+        		if(moveB!=0) {
         		totalGoldB=totalGoldB-gmB.getMove_Cost();//adým atma maaliyeti
-        		System.out.println("TotalB"+totalGoldB);
+        		System.out.println("TotalB "+totalGoldB);
+        		gmB.setGold(totalGoldB);
+        		}
+        		
         		moveB = 0;			
+            	}
         		//}
         		
         		// -----------------------------------------------------------------
@@ -477,7 +510,9 @@ public class MainFrame extends JFrame {
         		
         		
         		//for(int b=0;b<12;b++) {
+        		if(totalGoldC>0) {
         			
+        		
         			if(locationxyC[0][1]==targetCoordinateC[0][1] && locationxyC[0][0]==targetCoordinateC[0][0] ) {
         				
         				
@@ -513,15 +548,28 @@ public class MainFrame extends JFrame {
         				}
         				
         				targetCoordinateC = gmC.chooseTargetC(total_Gold,GoldCoordinate,locationxyC,grid);
-        				totalGoldC=totalGoldC-gmC.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        				if(targetCoordinateC[0][0]!=99&&targetCoordinateC[0][1]!=99) {
+        					totalGoldC=totalGoldC-gmC.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+						}
+        			
         				
         				
         				}
         			//System.out.println("b :" + b);
         			System.out.println("gidileceklerC "+targetCoordinateC[0][0]+" "+targetCoordinateC[0][1]);
         			
-        			targetLengthxC = targetCoordinateC[0][0] - locationxyC[0][0];
-        			targetLengthyC = targetCoordinateC[0][1] - locationxyC[0][1];
+        			if(targetCoordinateC[0][0]!=99&&targetCoordinateC[0][1]!=99) {
+        				targetLengthxC = targetCoordinateC[0][0] - locationxyC[0][0];
+        				targetLengthyC = targetCoordinateC[0][1] - locationxyC[0][1];
+            			
+            			}
+            			else {
+            				targetLengthxC=0;
+            				targetLengthyC=0;
+            			}
+
+        			
+        			
         			
         		if(targetLengthxC > 0) {
         		while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
@@ -590,11 +638,16 @@ public class MainFrame extends JFrame {
         		}
         		
         		}
+        		if(moveC!=0) {
         		totalGoldC=totalGoldC-gmC.getMove_Cost();//adým atma maaliyeti
-        		System.out.println("totalC"+totalGoldC);
+        		System.out.println("totalC "+totalGoldC);
+        		gmC.setGold(totalGoldC);
+        		}
+        		
         		moveC = 0;
         		
-        		
+        		}
+    			
         		//}
         		
         		// -----------------------------------------------------------------
@@ -609,20 +662,34 @@ public class MainFrame extends JFrame {
         				grid[tColumns-1][0].setHorizontalAlignment(SwingConstants.CENTER);
         				
 
+        				if(totalGoldD>0) {
+        					
         				
         				//for(int b=0;b<12;b++) {
         					
         					if(locationxyD[0][1]==targetCoordinateD[0][1] && locationxyD[0][0]==targetCoordinateD[0][0]) {
         						
         						targetCoordinateD = gmD.chooseTargetD(total_Gold,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
-        						totalGoldD=totalGoldD-gmD.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        						if(targetCoordinateD[0][0]!=99&&targetCoordinateD[0][1]!=99) {
+        							totalGoldD=totalGoldD-gmD.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        						}
+        						
         						}
         					
         					//System.out.println("b :" + b);
         					System.out.println("gidileceklerD "+targetCoordinateD[0][0]+" "+targetCoordinateD[0][1]);
         					
-        					targetLengthxD = targetCoordinateD[0][0] - locationxyD[0][0];
-        					targetLengthyD = targetCoordinateD[0][1] - locationxyD[0][1];
+        					if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+                				targetLengthxD = targetCoordinateD[0][0] - locationxyD[0][0];
+                				targetLengthyD = targetCoordinateD[0][1] - locationxyD[0][1];
+        	        		
+        	        			}
+        	        			else {
+        	        				targetLengthxD=0;
+        	        				targetLengthyD=0;
+        	        			}
+
+        					
         					
         				if(targetLengthxD > 0) {
         				while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=3) {
@@ -692,15 +759,26 @@ public class MainFrame extends JFrame {
         				}
         				
         				}
+        				if(moveD!=0) {
         				totalGoldD=totalGoldD-gmD.getMove_Cost();//adım atma maaliyeti
-        				System.out.println(totalGoldD);
+        				System.out.println("totalD "+totalGoldD);
+        				gmD.setGold(totalGoldD);
+        					
+        				}
+        				
         				moveD = 0;			
             	}
+            	}
+
+            		devam=false;
+            	
+            	
             	};
             	
         
 
  };
+ 
  timer.schedule(sayacTimerTask, 0, 1000);    
  	
 				//}
