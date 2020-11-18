@@ -31,15 +31,16 @@ import javax.swing.border.BevelBorder;
 
 public class Menu extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textRows;
-	private JTextField textColumns;
-	private JTextField goldRate;
-	private JTextField secretGoldRate;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	public JPanel contentPane;
+	public JTextField textRows;
+	public int mRows;
+	public JTextField textColumns;
+	public JTextField goldRate;
+	public JTextField secretGoldRate;
+	public JTextField textField;
+	public JTextField textField_1;
+	public JTextField textField_2;
+	public JTextField textField_3;
 
 
 	/**
@@ -120,16 +121,21 @@ public class Menu extends JFrame {
 		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 15));
 		btnNewButton.setBackground(new Color(255, 204, 0));
 		btnNewButton.setForeground(SystemColor.menuText);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
+				Board board=new Board();
+				//board.setRows(Integer.parseInt(textRows.getText()));
+				mRows=Integer.parseInt(textRows.getText());
+				System.out.println(mRows);
+				board.setRows(mRows);
+				MainFrame main=new MainFrame();
+				main.setVisible(true);
+				dispose();
 				
 			}
 		});
+		
 		btnNewButton.setBounds(400, 413, 192, 52);
 		panel.add(btnNewButton);
 		

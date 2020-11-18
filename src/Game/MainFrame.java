@@ -51,8 +51,11 @@ public class MainFrame extends JFrame {
 	GamerA gmA = new GamerA();
 	Player gamerA = new GamerA();
 	int totalGoldA = gamerA.getGold();
+	int harcananaltinA=0;
+	int kazanilanaltinA=0;
 	int targetLengthx,targetLengthy;
 	int moveA = 0;
+	int topmoveA=0;
 	
 	Player gamerB = new GamerB();
 	GamerB gmB = new GamerB();
@@ -60,7 +63,10 @@ public class MainFrame extends JFrame {
 	int [][] locationxyB= new int [1][2];
 
 	int totalGoldB = gamerB.getGold();
+	int harcananaltinB=0;
+	int kazanilanaltinB=0;
 	int moveB = 0;
+	int topmoveB=0;
 	int targetLengthxB,targetLengthyB;
 
 	Player gamerC = new GamerC();
@@ -70,7 +76,10 @@ public class MainFrame extends JFrame {
 	int [][] locationxyC= new int [1][2];
 	
 	int totalGoldC = gamerC.getGold();
+	int harcananaltinC=0;
+	int kazanilanaltinC=0;
 	int moveC = 0;
+	int topmoveC=0;
 	int targetLengthxC,targetLengthyC;
 
 	int tmp=0;
@@ -80,7 +89,10 @@ public class MainFrame extends JFrame {
 	int [][] locationxyD= new int [1][2];
 
 	int totalGoldD = gamerD.getGold();
+	int harcananaltinD=0;
+	int kazanilanaltinD=0;
 	int moveD = 0;
+	int topmoveD=0;
 	int targetLengthxD,targetLengthyD;
 
 	public MainFrame() {
@@ -291,6 +303,7 @@ public class MainFrame extends JFrame {
         				targetCoordinate = gmA.chooseTargetA(total_Gold,GoldCoordinate,locationxyA);
         				
         				if(targetCoordinate[0][0]!=99&&targetCoordinate[0][1]!=99) {
+        					harcananaltinA+=gmA.getChoosing_Target_Cost();
         					totalGoldA=totalGoldA-gmA.getChoosing_Target_Cost();// hedef belirleme maaliyeti
 						}
         				
@@ -315,7 +328,7 @@ public class MainFrame extends JFrame {
         		while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
         			locationxyA[0][0]=locationxyA[0][0]+1;
         			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
+        			//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveA++;
         			
@@ -325,7 +338,7 @@ public class MainFrame extends JFrame {
         			while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
         				locationxyA[0][0]=locationxyA[0][0]-1;
         				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
+        				//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveA++;
         			
@@ -336,7 +349,7 @@ public class MainFrame extends JFrame {
         		while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
         			locationxyA[0][1]=locationxyA[0][1]+1;
         			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
+        			//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveA++;
         		
@@ -345,7 +358,7 @@ public class MainFrame extends JFrame {
         			while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
         				locationxyA[0][1]=locationxyA[0][1]-1;
         				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
+        				//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveA++;
         		
@@ -353,9 +366,9 @@ public class MainFrame extends JFrame {
         		}
         		
         		if(locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]) {
-        			
+        			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         		totalGoldA=totalGoldA+Integer.parseInt(grid[targetCoordinate[0][0]][targetCoordinate[0][1]].getText());
-        		
+        		kazanilanaltinA+=Integer.parseInt(grid[targetCoordinate[0][0]][targetCoordinate[0][1]].getText());
         		for(int a=0;a<total_Gold;a++) {
         			if(GoldCoordinate[a][0]==targetCoordinate[0][0] && GoldCoordinate[a][1]==targetCoordinate[0][1]) {
         				GoldCoordinate[a][0]=99;
@@ -378,11 +391,12 @@ public class MainFrame extends JFrame {
         		
         		}
         		if(moveA!=0) {
+        		harcananaltinA+=gmA.getMove_Cost();
         		totalGoldA=totalGoldA-gmA.getMove_Cost();//adým atma maaliyeti
         		System.out.println("TotalA "+totalGoldA);
         		gmA.setGold(totalGoldA);
         		}
-        		
+        		topmoveA+=moveA;
         		moveA = 0;			
         		//}
             	}
@@ -408,6 +422,7 @@ public class MainFrame extends JFrame {
         				targetCoordinateB = gmB.chooseTargetB(total_Gold,GoldCoordinate,locationxyB,grid);
         				
         				if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        					harcananaltinB+=gmB.getChoosing_Target_Cost();
         					totalGoldB=totalGoldB-gmB.getChoosing_Target_Cost();// hedef belirleme maaliyeti
         					
 						}
@@ -427,8 +442,7 @@ public class MainFrame extends JFrame {
         		if(targetLengthxB > 0) {
         		while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=3) {
         			locationxyB[0][0]=locationxyB[0][0]+1;
-        			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
+        			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         			grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveB++;
         		
@@ -437,8 +451,7 @@ public class MainFrame extends JFrame {
         		else {
         			while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=3) {
         				locationxyB[0][0]=locationxyB[0][0]-1;
-        				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
+        				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         				grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveB++;
         			
@@ -448,8 +461,7 @@ public class MainFrame extends JFrame {
         		if(targetLengthyB > 0) {
         		while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=3) {
         			locationxyB[0][1]=locationxyB[0][1]+1;
-        			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
+        			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         			grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveB++;
         		
@@ -457,8 +469,7 @@ public class MainFrame extends JFrame {
         		}else {
         			while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=3) {
         				locationxyB[0][1]=locationxyB[0][1]-1;
-        				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
+        				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         				grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveB++;
         			
@@ -467,6 +478,8 @@ public class MainFrame extends JFrame {
         		
         		if(locationxyB[0][1]==targetCoordinateB[0][1] && locationxyB[0][0]==targetCoordinateB[0][0]) {
         			
+        		grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
+        		kazanilanaltinB+=Integer.parseInt(grid[targetCoordinateB[0][0]][targetCoordinateB[0][1]].getText());
         		totalGoldB=totalGoldB+Integer.parseInt(grid[targetCoordinateB[0][0]][targetCoordinateB[0][1]].getText());
         		
         		for(int a=0;a<total_Gold;a++) {
@@ -491,11 +504,12 @@ public class MainFrame extends JFrame {
         		
         		}
         		if(moveB!=0) {
+        		harcananaltinB+=gmB.getMove_Cost();
         		totalGoldB=totalGoldB-gmB.getMove_Cost();//adým atma maaliyeti
         		System.out.println("TotalB "+totalGoldB);
         		gmB.setGold(totalGoldB);
         		}
-        		
+        		topmoveB+=moveB;
         		moveB = 0;			
             	}
         		//}
@@ -549,6 +563,7 @@ public class MainFrame extends JFrame {
         				
         				targetCoordinateC = gmC.chooseTargetC(total_Gold,GoldCoordinate,locationxyC,grid);
         				if(targetCoordinateC[0][0]!=99&&targetCoordinateC[0][1]!=99) {
+        					harcananaltinC+=gmC.getChoosing_Target_Cost();
         					totalGoldC=totalGoldC-gmC.getChoosing_Target_Cost();// hedef belirleme maaliyeti
 						}
         			
@@ -574,8 +589,7 @@ public class MainFrame extends JFrame {
         		if(targetLengthxC > 0) {
         		while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
         			locationxyC[0][0]=locationxyC[0][0]+1;
-        			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+        			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveC++;
         			
@@ -584,8 +598,7 @@ public class MainFrame extends JFrame {
         		else {
         			while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
         				locationxyC[0][0]=locationxyC[0][0]-1;
-        				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+        				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveC++;
         			
@@ -595,8 +608,7 @@ public class MainFrame extends JFrame {
         		if(targetLengthyC > 0) {
         		while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
         			locationxyC[0][1]=locationxyC[0][1]+1;
-        			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
-        			grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+        			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveC++;
         			
@@ -604,8 +616,7 @@ public class MainFrame extends JFrame {
         		}else {
         			while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
         				locationxyC[0][1]=locationxyC[0][1]-1;
-        				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.CYAN));
-        				grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);
+        				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveC++;
         			
@@ -614,6 +625,8 @@ public class MainFrame extends JFrame {
         		
         		if(locationxyC[0][1]==targetCoordinateC[0][1] && locationxyC[0][0]==targetCoordinateC[0][0]) {
         			
+        		kazanilanaltinC+=Integer.parseInt(grid[targetCoordinateC[0][0]][targetCoordinateC[0][1]].getText());
+        		grid[locationxyC[0][0]][locationxyC[0][1]].setForeground(Color.RED);  			
         		totalGoldC=totalGoldC+Integer.parseInt(grid[targetCoordinateC[0][0]][targetCoordinateC[0][1]].getText());
         		
         		for(int a=0;a<total_Gold;a++) {
@@ -639,11 +652,12 @@ public class MainFrame extends JFrame {
         		
         		}
         		if(moveC!=0) {
+        		harcananaltinC+=gmC.getMove_Cost();
         		totalGoldC=totalGoldC-gmC.getMove_Cost();//adým atma maaliyeti
         		System.out.println("totalC "+totalGoldC);
         		gmC.setGold(totalGoldC);
         		}
-        		
+        		topmoveC+=moveC;
         		moveC = 0;
         		
         		}
@@ -671,7 +685,9 @@ public class MainFrame extends JFrame {
         						
         						targetCoordinateD = gmD.chooseTargetD(total_Gold,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
         						if(targetCoordinateD[0][0]!=99&&targetCoordinateD[0][1]!=99) {
+        							harcananaltinD+=gmD.getChoosing_Target_Cost();
         							totalGoldD=totalGoldD-gmD.getChoosing_Target_Cost();// hedef belirleme maaliyeti
+        							
         						}
         						
         						}
@@ -694,8 +710,7 @@ public class MainFrame extends JFrame {
         				if(targetLengthxD > 0) {
         				while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=3) {
         					locationxyD[0][0]=locationxyD[0][0]+1;
-        					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.CYAN));
-        					grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
+        					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         					grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         					moveD++;
         				
@@ -704,8 +719,7 @@ public class MainFrame extends JFrame {
         				else {
         					while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=3) {
         						locationxyD[0][0]=locationxyD[0][0]-1;
-        						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.CYAN));
-        						grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
+        						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         						grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         						moveD++;
         						
@@ -715,8 +729,7 @@ public class MainFrame extends JFrame {
         				if(targetLengthyD > 0) {
         				while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=3) {
         					locationxyD[0][1]=locationxyD[0][1]+1;
-        					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.CYAN));
-        					grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
+        					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         					grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         					moveD++;
         				
@@ -724,8 +737,7 @@ public class MainFrame extends JFrame {
         				}else {
         					while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=3) {
         						locationxyD[0][1]=locationxyD[0][1]-1;
-        						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.CYAN));
-        						grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
+        						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         						grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         						moveD++;
         						
@@ -733,7 +745,9 @@ public class MainFrame extends JFrame {
         				}
         				
         				if(locationxyD[0][1]==targetCoordinateD[0][1] && locationxyD[0][0]==targetCoordinateD[0][0]) {
-        					
+
+    					grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
+    					kazanilanaltinD+=Integer.parseInt(grid[targetCoordinateD[0][0]][targetCoordinateD[0][1]].getText());
         				totalGoldD=totalGoldD+Integer.parseInt(grid[targetCoordinateD[0][0]][targetCoordinateD[0][1]].getText());
         				
         				for(int a=0;a<total_Gold;a++) {
@@ -760,26 +774,31 @@ public class MainFrame extends JFrame {
         				
         				}
         				if(moveD!=0) {
+        				harcananaltinD+=gmD.getMove_Cost();
         				totalGoldD=totalGoldD-gmD.getMove_Cost();//adım atma maaliyeti
         				System.out.println("totalD "+totalGoldD);
         				gmD.setGold(totalGoldD);
         					
         				}
-        				
+        				topmoveD+=moveD;
         				moveD = 0;			
             	}
             	}
-
+            	if(devam==false) {
+            		System.out.println("TOPLAM ADİM "+topmoveA+"  "+topmoveB+"  "+topmoveC+"  "+topmoveD);
+            		System.out.println("HARCANAN ALTİN "+harcananaltinA+"  "+harcananaltinB+"  "+harcananaltinC+"  "+harcananaltinD);
+            		System.out.println("KAZANİLAN ALTİN "+kazanilanaltinA+"  "+kazanilanaltinB+"  "+kazanilanaltinC+"  "+kazanilanaltinD);
+            		//çıkış komutu yazmamiz lazim fakat nasıl yapılacak bilmiyorum tem buraya
+            	}
             		devam=false;
-            	
-            	
+            		
             	};
             	
         
 
  };
  
- timer.schedule(sayacTimerTask, 0, 1000);    
+ timer.schedule(sayacTimerTask, 0, 1500);    
  	
 				//}
 		
