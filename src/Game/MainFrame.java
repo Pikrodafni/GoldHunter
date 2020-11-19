@@ -1141,7 +1141,7 @@ public class MainFrame extends JFrame {
 
  };
  
- timer.schedule(sayacTimerTask, 0, 1500);    
+ timer.schedule(sayacTimerTask, 0, 3000);    
  	
 				//}
 		
