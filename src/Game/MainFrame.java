@@ -8,6 +8,9 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -55,7 +58,7 @@ public class MainFrame extends JFrame {
 	int [][] locationxyA= new int [1][2];
 	GamerA gmA = new GamerA();
 	Player gamerA = new GamerA();
-	int totalGoldA = gamerA.getGold();
+	int totalGoldA = gmA.getGold();
 	int harcananaltinA=0;
 	int kazanilanaltinA=0;
 	int targetLengthx,targetLengthy;
@@ -67,7 +70,7 @@ public class MainFrame extends JFrame {
 	int [][] targetCoordinateB = new int [1][2];
 	int [][] locationxyB= new int [1][2];
 
-	int totalGoldB = gamerB.getGold();
+	int totalGoldB = gmB.getGold();
 	int harcananaltinB=0;
 	int kazanilanaltinB=0;
 	int moveB = 0;
@@ -80,7 +83,7 @@ public class MainFrame extends JFrame {
 	int [][] openSecretGold = new int [1][2];
 	int [][] locationxyC= new int [1][2];
 	
-	int totalGoldC = gamerC.getGold();
+	int totalGoldC = gmC.getGold();
 	int harcananaltinC=0;
 	int kazanilanaltinC=0;
 	int moveC = 0;
@@ -93,7 +96,7 @@ public class MainFrame extends JFrame {
 	int [][] targetCoordinateD = new int [1][2];
 	int [][] locationxyD= new int [1][2];
 
-	int totalGoldD = gamerD.getGold();
+	int totalGoldD = gmD.getGold();
 	int harcananaltinD=0;
 	int kazanilanaltinD=0;
 	int moveD = 0;
@@ -101,8 +104,8 @@ public class MainFrame extends JFrame {
 	int targetLengthxD,targetLengthyD;
 
 	public MainFrame() {
-		int tahtax=600;
-		int tahtay=600;
+		int tahtax=700;
+		int tahtay=700;
 		
 		GamerA PlayerA = new GamerA();
 		
@@ -119,7 +122,7 @@ public class MainFrame extends JFrame {
 				// Get Default Variable from the dosya.txt
 				
 				Path file = Paths.get("dosya.txt");
-		        
+		       
 				int [] defValues = new int [4];
 				int valueStep = 0;
 		        
@@ -147,9 +150,119 @@ public class MainFrame extends JFrame {
 				int total_Gold = (int) (GameBoard.getGold_Number());
 				int total_Secret_Gold = (int) GameBoard.getSecret_Gold_Number();
 				System.out.println("GETSLER . "+ GameBoard.getRows()+" " + GameBoard.getColumns()+" " + GameBoard.getGold_Number()+" " + GameBoard.getSecret_Gold_Number());
-		
-		// -----------------------------------------------------------------
-		// Get Random Number 1-397
+				
+				
+				// -----------------------------------------------------------------
+				// Get Default Variable from the dosya.txt
+						
+					Path fileA = Paths.get("gamerA.txt");
+				        
+					int [] defValuesA = new int [4];
+					valueStep = 0;
+				        
+					try (BufferedReader readerA = Files.newBufferedReader(fileA)) {
+					    String lineA = null;
+					    while ((lineA = readerA.readLine()) != null) {
+					    	
+					    	defValuesA[valueStep] = Integer.parseInt(lineA);
+					    	valueStep++;
+						    System.out.println("sıra : "+lineA+"  ");
+						    }
+						} catch (IOException x) {
+						    System.err.format("IOException: %s%n", x);
+						}
+						gmA.setGold(defValuesA[0]);
+						gmA.setMax_Move(defValuesA[1]);
+						gmA.setMove_Cost(defValuesA[2]);
+						gmA.setChoosing_Target_Cost(defValuesA[3]);
+						
+						// -----------------------------------------------------------------
+						// Get Default Variable from the dosya.txt
+								
+							Path fileB = Paths.get("gamerB.txt");
+						        
+							int [] defValuesB = new int [4];
+							valueStep = 0;
+						        
+							try (BufferedReader readerB = Files.newBufferedReader(fileB)) {
+							    String lineB = null;
+							    while ((lineB = readerB.readLine()) != null) {
+							    	
+							    	defValuesB[valueStep] = Integer.parseInt(lineB);
+							    	valueStep++;
+								    System.out.println("sıra : "+lineB+"  ");
+								    
+								    }
+								} catch (IOException x) {
+								    System.err.format("IOException: %s%n", x);
+								}
+							gmB.setGold(defValuesB[0]);
+							gmB.setMax_Move(defValuesB[1]);
+							gmB.setMove_Cost(defValuesB[2]);
+							gmB.setChoosing_Target_Cost(defValuesB[3]);
+							
+								
+								// -----------------------------------------------------------------
+								// Get Default Variable from the dosya.txt
+										
+									Path fileC = Paths.get("gamerC.txt");
+								        
+									int [] defValuesC = new int [4];
+									valueStep = 0;
+								        
+									try (BufferedReader readerC = Files.newBufferedReader(fileC)) {
+									    String lineC = null;
+									    while ((lineC = readerC.readLine()) != null) {
+									    	
+									    	defValuesC[valueStep] = Integer.parseInt(lineC);
+									    	valueStep++;
+										    System.out.println("sıra : "+lineC+"  ");
+										    }
+										} catch (IOException x) {
+										    System.err.format("IOException: %s%n", x);
+										}
+												gmC.setGold(defValuesC[0]);
+												gmC.setMax_Move(defValuesC[1]);
+												gmC.setMove_Cost(defValuesC[2]);
+												gmC.setChoosing_Target_Cost(defValuesC[3]);
+									
+										
+										
+										// -----------------------------------------------------------------
+										// Get Default Variable from the dosya.txt
+												
+											Path fileD = Paths.get("gamerD.txt");
+										        
+											int [] defValuesD = new int [4];
+											valueStep = 0;
+										        
+											try (BufferedReader readerD = Files.newBufferedReader(fileB)) {
+											    String lineD = null;
+											    while ((lineD = readerD.readLine()) != null) {
+											    	
+											    	defValuesD[valueStep] = Integer.parseInt(lineD);
+											    	valueStep++;
+												    System.out.println("sıra : "+lineD+"  ");
+												    }
+												} catch (IOException x) {
+												    System.err.format("IOException: %s%n", x);
+												}
+												gmD.setGold(defValuesD[0]);
+												gmD.setMax_Move(defValuesD[1]);
+												gmD.setMove_Cost(defValuesD[2]);
+												gmD.setChoosing_Target_Cost(defValuesD[3]);
+				
+				totalGoldA = gmA.getGold();
+				totalGoldB = gmB.getGold();
+				totalGoldC = gmC.getGold();
+				totalGoldD = gmD.getGold();
+				
+				
+				// -----------------------------------------------------------------
+				// Get Random Number 1-397
+				
+				
+				
 		ArrayList<Integer> gColumns = new ArrayList<Integer>();
 		ArrayList<Integer> gRows = new ArrayList<Integer>();
 		int [] randomNum1 = new int[total_Gold];
@@ -211,7 +324,7 @@ public class MainFrame extends JFrame {
 		// GAME PANEL
 		
 		JPanel GamePanel = new JPanel();
-		GamePanel.setBounds(0, 0, 584, 561);
+		GamePanel.setBounds(0, 0, 684, 661);
 		contentPane.add(GamePanel);
 		GamePanel.setVisible(true);
 		GamePanel.setLayout(new GridLayout(tColumns,tRows));	
@@ -313,6 +426,86 @@ public class MainFrame extends JFrame {
 		targetCoordinateD[0][0]=tColumns-1;
 		targetCoordinateD[0][1]=0;
 		
+		
+		
+		File fileA2 = new File("locationA.txt");
+        if (!fileA2.exists()) {
+            try {
+				fileA2.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
+        FileWriter fileWriterA = null;
+		try {
+			fileWriterA = new FileWriter(fileA2, false);
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+        BufferedWriter bWriterA = new BufferedWriter(fileWriterA);
+        
+        
+        File fileB2 = new File("locationB.txt");
+        if (!fileB2.exists()) {
+            try {
+				fileB2.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
+        FileWriter fileWriterB = null;
+		try {
+			fileWriterB = new FileWriter(fileB2, false);
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+        BufferedWriter bWriterB = new BufferedWriter(fileWriterB);
+		
+        
+        File fileC2 = new File("locationC.txt");
+        if (!fileC2.exists()) {
+            try {
+				fileC2.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
+        FileWriter fileWriterC = null;
+		try {
+			fileWriterC = new FileWriter(fileC2, false);
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+        BufferedWriter bWriterC = new BufferedWriter(fileWriterC);
+		
+        File fileD2 = new File("locationD.txt");
+        if (!fileD2.exists()) {
+            try {
+				fileD2.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
+        FileWriter fileWriterD = null;
+		try {
+			fileWriterD = new FileWriter(fileD2, false);
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+        BufferedWriter bWriterD = new BufferedWriter(fileWriterD);
+		
+        
+        
+		
+		
 		Timer timer = new Timer();
 		TimerTask sayacTimerTask = new TimerTask() {
             
@@ -328,7 +521,7 @@ public class MainFrame extends JFrame {
    }
             	if(devam==true) {
             		
-            	if(totalGoldA>0) {		//A oyuncusu
+            	if(totalGoldA>0) {	//A oyuncusu
             		
         			if( locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]  ) {
         				
@@ -357,46 +550,72 @@ public class MainFrame extends JFrame {
         			
         			
         		if(targetLengthx > 0) {
-        		while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
+        		while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=gmA.getMax_Move()) {
         			locationxyA[0][0]=locationxyA[0][0]+1;
         			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
         			//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveA++;
-        			
+        			try {
+						bWriterA.write(locationxyA[0][0]+"  "+locationxyA[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}
         		else {
-        			while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=3) {
+        			while(locationxyA[0][0]!=targetCoordinate[0][0] && moveA!=gmA.getMax_Move()) {
         				locationxyA[0][0]=locationxyA[0][0]-1;
         				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
         				//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveA++;
-        			
+        				try {
+    						bWriterA.write(locationxyA[0][0]+"  "+locationxyA[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         			
         		}
         		if(targetLengthy > 0) {
-        		while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
+        		while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=gmA.getMax_Move()) {
         			locationxyA[0][1]=locationxyA[0][1]+1;
         			grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
         			//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         			grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveA++;
-        		
+        			try {
+						bWriterA.write(locationxyA[0][0]+"  "+locationxyA[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}else {
-        			while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=3) {
+        			while(locationxyA[0][1]!=targetCoordinate[0][1] && moveA!=gmA.getMax_Move()) {
         				locationxyA[0][1]=locationxyA[0][1]-1;
         				grid[locationxyA[0][0]][locationxyA[0][1]].setBorder(new LineBorder(Color.CYAN));
         				//grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         				grid[locationxyA[0][0]][locationxyA[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveA++;
-        		
+        				try {
+    						bWriterA.write(locationxyA[0][0]+"  "+locationxyA[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         		}
         		
+    						try {
+								bWriterA.newLine();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
         		if(locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]) {
         			grid[locationxyA[0][0]][locationxyA[0][1]].setForeground(Color.RED);
         		totalGoldA=totalGoldA+Integer.parseInt(grid[targetCoordinate[0][0]][targetCoordinate[0][1]].getText());
@@ -472,42 +691,68 @@ public class MainFrame extends JFrame {
         				targetLengthyB=0;
         			}
         		if(targetLengthxB > 0) {
-        		while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=3) {
+        		while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=gmB.getMax_Move()) {
         			locationxyB[0][0]=locationxyB[0][0]+1;
         			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         			grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveB++;
-        		
+        			try {
+						bWriterB.write(locationxyB[0][0]+"  "+locationxyB[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}
         		else {
-        			while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=3) {
+        			while(locationxyB[0][0]!=targetCoordinateB[0][0] && moveB!=gmB.getMax_Move()) {
         				locationxyB[0][0]=locationxyB[0][0]-1;
         				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         				grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveB++;
-        			
+        				try {
+    						bWriterB.write(locationxyB[0][0]+"  "+locationxyB[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         			
         		}
         		if(targetLengthyB > 0) {
-        		while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=3) {
+        		while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=gmB.getMax_Move()) {
         			locationxyB[0][1]=locationxyB[0][1]+1;
         			grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         			grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveB++;
-        		
+        			try {
+						bWriterB.write(locationxyB[0][0]+"  "+locationxyB[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}else {
-        			while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=3) {
+        			while(locationxyB[0][1]!=targetCoordinateB[0][1] && moveB!=gmB.getMax_Move()) {
         				locationxyB[0][1]=locationxyB[0][1]-1;
         				grid[locationxyB[0][0]][locationxyB[0][1]].setBorder(new LineBorder(Color.PINK));
         				grid[locationxyB[0][0]][locationxyB[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveB++;
-        			
+        				try {
+    						bWriterB.write(locationxyB[0][0]+"  "+locationxyB[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         		}
         		
+    						try {
+								bWriterB.newLine();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
         		if(locationxyB[0][1]==targetCoordinateB[0][1] && locationxyB[0][0]==targetCoordinateB[0][0]) {
         			
         		grid[locationxyB[0][0]][locationxyB[0][1]].setForeground(Color.RED);
@@ -572,7 +817,7 @@ public class MainFrame extends JFrame {
         						SecretGoldCoordinate[i][0]=99;
         						SecretGoldCoordinate[i][1]=99;
         						grid[openSecretGold[0][0]][openSecretGold[0][1]].setForeground(Color.BLUE);
-        						grid[openSecretGold[0][0]][openSecretGold[0][1]].setFont(new Font("Tahoma", Font.BOLD, 30));
+        						grid[openSecretGold[0][0]][openSecretGold[0][1]].setFont(new Font("Tahoma", Font.BOLD, 15));
         						tmp++;
         							}
         					}
@@ -587,7 +832,7 @@ public class MainFrame extends JFrame {
         						SecretGoldCoordinate[i][0]=99;
         						SecretGoldCoordinate[i][1]=99;
         						grid[openSecretGold[0][0]][openSecretGold[0][1]].setForeground(Color.BLUE);
-        						grid[openSecretGold[0][0]][openSecretGold[0][1]].setFont(new Font("Tahoma", Font.BOLD, 30));
+        						grid[openSecretGold[0][0]][openSecretGold[0][1]].setFont(new Font("Tahoma", Font.BOLD, 15));
         						tmp++;
         							}
         					}
@@ -619,42 +864,69 @@ public class MainFrame extends JFrame {
         			
         			
         		if(targetLengthxC > 0) {
-        		while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
+        		while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=gmC.getMax_Move()) {
         			locationxyC[0][0]=locationxyC[0][0]+1;
         			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveC++;
-        			
+        			try {
+						bWriterC.write(locationxyC[0][0]+"  "+locationxyC[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}
         		else {
-        			while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=3) {
+        			while(locationxyC[0][0]!=targetCoordinateC[0][0] && moveC!=gmC.getMax_Move()) {
         				locationxyC[0][0]=locationxyC[0][0]-1;
         				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveC++;
-        			
+        				try {
+    						bWriterC.write(locationxyC[0][0]+"  "+locationxyC[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         			
         		}
         		if(targetLengthyC > 0) {
-        		while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
+        		while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=gmC.getMax_Move()) {
         			locationxyC[0][1]=locationxyC[0][1]+1;
         			grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         			grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         			moveC++;
-        			
+        			try {
+						bWriterC.write(locationxyC[0][0]+"  "+locationxyC[0][1]+" , ");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         		}
         		}else {
-        			while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=3) {
+        			while(locationxyC[0][1]!=targetCoordinateC[0][1] && moveC!=gmC.getMax_Move()) {
         				locationxyC[0][1]=locationxyC[0][1]-1;
         				grid[locationxyC[0][0]][locationxyC[0][1]].setBorder(new LineBorder(Color.YELLOW));
         				grid[locationxyC[0][0]][locationxyC[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         				moveC++;
-        			
+        				try {
+    						bWriterC.write(locationxyC[0][0]+"  "+locationxyC[0][1]+" , ");
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
         			}
         		}
-        		
+
+				try {
+					bWriterC.newLine();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
         		if(locationxyC[0][1]==targetCoordinateC[0][1] && locationxyC[0][0]==targetCoordinateC[0][0]) {
         			
         		kazanilanaltinC+=Integer.parseInt(grid[targetCoordinateC[0][0]][targetCoordinateC[0][1]].getText());
@@ -727,7 +999,7 @@ public class MainFrame extends JFrame {
         					//System.out.println("b :" + b);
         					System.out.println("gidileceklerD "+targetCoordinateD[0][0]+" "+targetCoordinateD[0][1]);
         					
-        					if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        					if(targetCoordinateD[0][0]!=99&&targetCoordinateD[0][1]!=99) {
                 				targetLengthxD = targetCoordinateD[0][0] - locationxyD[0][0];
                 				targetLengthyD = targetCoordinateD[0][1] - locationxyD[0][1];
         	        		
@@ -740,42 +1012,68 @@ public class MainFrame extends JFrame {
         					
         					
         				if(targetLengthxD > 0) {
-        				while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=3) {
+        				while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=gmD.getMax_Move()) {
         					locationxyD[0][0]=locationxyD[0][0]+1;
         					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         					grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         					moveD++;
-        				
+        					try {
+        						bWriterD.write(locationxyD[0][0]+"  "+locationxyD[0][1]+" , ");
+        					} catch (IOException e) {
+        						// TODO Auto-generated catch block
+        						e.printStackTrace();
+        					}
         				}
         				}
         				else {
-        					while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=3) {
+        					while(locationxyD[0][0]!=targetCoordinateD[0][0] && moveD!=gmD.getMax_Move()) {
         						locationxyD[0][0]=locationxyD[0][0]-1;
         						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         						grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         						moveD++;
-        						
+        						try {
+            						bWriterD.write(locationxyD[0][0]+"  "+locationxyD[0][1]+" , ");
+            					} catch (IOException e) {
+            						// TODO Auto-generated catch block
+            						e.printStackTrace();
+            					}
         					}
         					
         				}
         				if(targetLengthyD > 0) {
-        				while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=3) {
+        				while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=gmD.getMax_Move()) {
         					locationxyD[0][1]=locationxyD[0][1]+1;
         					grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         					grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         					moveD++;
-        				
+        					try {
+        						bWriterD.write(locationxyD[0][0]+"  "+locationxyD[0][1]+" , ");
+        					} catch (IOException e) {
+        						// TODO Auto-generated catch block
+        						e.printStackTrace();
+        					}
         				}
         				}else {
-        					while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=3) {
+        					while(locationxyD[0][1]!=targetCoordinateD[0][1] && moveD!=gmD.getMax_Move()) {
         						locationxyD[0][1]=locationxyD[0][1]-1;
         						grid[locationxyD[0][0]][locationxyD[0][1]].setBorder(new LineBorder(Color.GREEN));
         						grid[locationxyD[0][0]][locationxyD[0][1]].setHorizontalAlignment(SwingConstants.CENTER);
         						moveD++;
-        						
+        						try {
+            						bWriterD.write(locationxyD[0][0]+"  "+locationxyD[0][1]+" , ");
+            					} catch (IOException e) {
+            						// TODO Auto-generated catch block
+            						e.printStackTrace();
+            					}
         					}
         				}
-        				
+
+						try {
+							bWriterD.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
         				if(locationxyD[0][1]==targetCoordinateD[0][1] && locationxyD[0][0]==targetCoordinateD[0][0]) {
 
     					grid[locationxyD[0][0]][locationxyD[0][1]].setForeground(Color.RED);
@@ -818,9 +1116,22 @@ public class MainFrame extends JFrame {
             	}
             	if(devam==false) {
             		System.out.println("TOPLAM ADİM "+topmoveA+"  "+topmoveB+"  "+topmoveC+"  "+topmoveD);
+            		System.out.println("TOPLAM ALTİN "+totalGoldA+"  "+totalGoldB+"  "+totalGoldC+"  "+totalGoldD);
             		System.out.println("HARCANAN ALTİN "+harcananaltinA+"  "+harcananaltinB+"  "+harcananaltinC+"  "+harcananaltinD);
             		System.out.println("KAZANİLAN ALTİN "+kazanilanaltinA+"  "+kazanilanaltinB+"  "+kazanilanaltinC+"  "+kazanilanaltinD);
             		//çıkış komutu yazmamiz lazim fakat nasıl yapılacak bilmiyorum tem buraya
+            		try {
+						bWriterA.close();
+						bWriterB.close();
+						bWriterC.close();
+						bWriterD.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            		
+            		
+            		timer.cancel();
             	}
             		devam=false;
             		

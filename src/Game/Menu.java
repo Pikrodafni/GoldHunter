@@ -64,8 +64,11 @@ public class Menu extends JFrame {
 	public String getMaxmoveD;
 	public String getMovecostD;
 	public String getTargetcostD;
-
-
+	public boolean boolA = false;
+	public boolean boolB = false;
+	public boolean boolC = false;
+	public boolean boolD = false;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -190,6 +193,193 @@ public class Menu extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+		          if(boolA==false) {
+		        	  
+		          	getGoldA = "200";
+			    	getMaxmoveA = "3";
+			    	getMovecostA = "5";
+			    	getTargetcostA = "5";
+			    	  
+			    	File fileA = new File("gamerA.txt");
+			          if (!fileA.exists()) {
+			              try {
+							fileA.createNewFile();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			          }
+			          
+			          FileWriter fileWriterA = null;
+					try {
+						fileWriterA = new FileWriter(fileA, false);
+					} catch (IOException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+			          BufferedWriter bWriterA = new BufferedWriter(fileWriterA);
+			          try {
+			        		bWriterA.write(getGoldA);
+							bWriterA.newLine();
+							bWriterA.write(getMaxmoveA);
+							bWriterA.newLine();
+							bWriterA.write(getMovecostA);
+							bWriterA.newLine();
+							bWriterA.write(getTargetcostA);
+						
+
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+			          try {
+						bWriterA.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          if(boolB==false) {
+		        	  
+		        		getGoldB = "200";
+				    	getMaxmoveB = "3";
+				    	getMovecostB = "5";
+				    	getTargetcostB = "10";
+				    	  
+				    	File fileB = new File("gamerB.txt");
+				          if (!fileB.exists()) {
+				              try {
+								fileB.createNewFile();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+				          }
+				          
+				          FileWriter fileWriterB = null;
+						try {
+							fileWriterB = new FileWriter(fileB, false);
+						} catch (IOException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						}
+				          BufferedWriter bWriterB = new BufferedWriter(fileWriterB);
+				          try {
+				        		bWriterB.write(getGoldB);
+								bWriterB.newLine();
+								bWriterB.write(getMaxmoveB);
+								bWriterB.newLine();
+								bWriterB.write(getMovecostB);
+								bWriterB.newLine();
+								bWriterB.write(getTargetcostB);
+							
+
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+				          try {
+							bWriterB.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		          }
+		          			if(boolC==false) {
+		          				
+		          				getGoldC = "200";
+		    			    	getMaxmoveC = "3";
+		    			    	getMovecostC = "5";
+		    			    	getTargetcostC = "15";
+					    	  
+					    	File fileC = new File("gamerC.txt");
+					          if (!fileC.exists()) {
+					              try {
+									fileC.createNewFile();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+					          }
+					          
+					          FileWriter fileWriterC = null;
+							try {
+								fileWriterC = new FileWriter(fileC, false);
+							} catch (IOException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							}
+					          BufferedWriter bWriterC = new BufferedWriter(fileWriterC);
+					          try {
+					        		bWriterC.write(getGoldC);
+									bWriterC.newLine();
+									bWriterC.write(getMaxmoveC);
+									bWriterC.newLine();
+									bWriterC.write(getMovecostC);
+									bWriterC.newLine();
+									bWriterC.write(getTargetcostC);
+								
+
+							} catch (IOException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+					          try {
+								bWriterC.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}      
+		          			}
+		          				
+		          	if(boolD==false) {
+		          	
+		          		getGoldD = "200";
+				    	getMaxmoveD = "3";
+				    	getMovecostD = "5";
+				    	getTargetcostD = "20";
+			    	  
+			    	File fileD = new File("gamerD.txt");
+			          if (!fileD.exists()) {
+			              try {
+							fileD.createNewFile();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			          }
+			          
+			          FileWriter fileWriterD = null;
+					try {
+						fileWriterD = new FileWriter(fileD, false);
+					} catch (IOException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+			          BufferedWriter bWriterD = new BufferedWriter(fileWriterD);
+			          try {
+			        		bWriterD.write(getGoldD);
+							bWriterD.newLine();
+							bWriterD.write(getMaxmoveD);
+							bWriterD.newLine();
+							bWriterD.write(getMovecostD);
+							bWriterD.newLine();
+							bWriterD.write(getTargetcostD);
+						
+
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+			          try {
+						bWriterD.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          			}
+		          
+		          
 		    	
 				MainFrame mainframe = new MainFrame();
 				mainframe.setVisible(true);
@@ -339,7 +529,7 @@ public class Menu extends JFrame {
 		panel.add(moveCost);
 		
 		targetCost = new JTextField();
-		targetCost.setText("10");
+		targetCost.setText("5");
 		targetCost.setHorizontalAlignment(SwingConstants.CENTER);
 		targetCost.setColumns(10);
 		targetCost.setBackground(SystemColor.info);
@@ -353,6 +543,8 @@ public class Menu extends JFrame {
 		JButton btnNewButton_1 = new JButton("Set GamerA");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				boolA = true;
 				
 				getGoldA = gold.getText();
 		    	getMaxmoveA = maxMove.getText();
@@ -411,6 +603,8 @@ public class Menu extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				boolB = true;
+				
 				getGoldB = gold.getText();
 		    	getMaxmoveB = maxMove.getText();
 		    	getMovecostB = moveCost.getText();
@@ -468,6 +662,8 @@ public class Menu extends JFrame {
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				boolC = true;
+				
 				getGoldC = gold.getText();
 		    	getMaxmoveC = maxMove.getText();
 		    	getMovecostC = moveCost.getText();
@@ -524,6 +720,8 @@ public class Menu extends JFrame {
 		JButton btnNewButton_1_3 = new JButton("Set GamerD");
 		btnNewButton_1_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				boolD = true;
 				
 				getGoldD = gold.getText();
 		    	getMaxmoveD = maxMove.getText();
