@@ -23,7 +23,7 @@ public class GamerA extends Player {
 		int enkucukuzak = 999999999;
 		
 		for(int k=0;k<sayac;k++) {
-			if(GoldCoordinate[k][0]==locationxyA[0][0]&&GoldCoordinate[k][1]==locationxyA[0][1]) {
+			if(GoldCoordinate[k][0]==locationxyA[0][0] && GoldCoordinate[k][1]==locationxyA[0][1]) {
 				continue;
 			}
 			
@@ -32,7 +32,7 @@ public class GamerA extends Player {
 			xuzak= Math.abs(xuzak);
 			yuzak= Math.abs(yuzak);
 			totaluzak=xuzak+yuzak;
-			if(GoldCoordinate[k][0]!=0&&GoldCoordinate[k][1]!=0) {
+			if(GoldCoordinate[k][0]!=0 && GoldCoordinate[k][1]!=0 ) {
 				if(totaluzak<enkucukuzak) {
 				targetCoordinate[0][0]=GoldCoordinate[k][0];
 				targetCoordinate[0][1]=GoldCoordinate[k][1];

@@ -538,7 +538,7 @@ public class MainFrame extends JFrame {
         			//System.out.println("b :" + b);
         			System.out.println("gidileceklerA "+targetCoordinate[0][0]+" "+targetCoordinate[0][1]);
         			
-        			if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
+        			if(targetCoordinate[0][0]!=99&&targetCoordinate[0][1]!=99) {
         				targetLengthx = targetCoordinate[0][0] - locationxyA[0][0];
         				targetLengthy = targetCoordinate[0][1] - locationxyA[0][1];
             			}
