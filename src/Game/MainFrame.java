@@ -7,6 +7,11 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -110,14 +115,41 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
+		// -----------------------------------------------------------------
+				// Get Default Variable from the dosya.txt
+				
+				Path file = Paths.get("dosya.txt");
+		        
+				int [] defValues = new int [4];
+				int valueStep = 0;
+		        
+				try (BufferedReader reader = Files.newBufferedReader(file)) {
+				    String line = null;
+				    while ((line = reader.readLine()) != null) {
+				    	
+				    	defValues[valueStep] = Integer.parseInt(line);
+				    	valueStep++;
+				        System.out.println("sıra : "+line+"  ");
+				    }
+				} catch (IOException x) {
+				    System.err.format("IOException: %s%n", x);
+				}
+				
+				GameBoard.setRows(defValues[0]);
+				GameBoard.setColumns(defValues[1]);
+				GameBoard.setGold_Rate(defValues[2]);
+				GameBoard.setSecret_Gold_Rate(defValues[3]);
+				GameBoard.setGold_Number(GameBoard.getRows()*GameBoard.getColumns()*GameBoard.getGold_Rate()/100);
+				GameBoard.setSecret_Gold_Number( GameBoard.getGold_Number()*GameBoard.getSecret_Gold_Rate()/100);
+			
+				int tRows = GameBoard.getRows();
+				int tColumns= GameBoard.getColumns();
+				int total_Gold = (int) (GameBoard.getGold_Number());
+				int total_Secret_Gold = (int) GameBoard.getSecret_Gold_Number();
+				System.out.println("GETSLER . "+ GameBoard.getRows()+" " + GameBoard.getColumns()+" " + GameBoard.getGold_Number()+" " + GameBoard.getSecret_Gold_Number());
 		
 		// -----------------------------------------------------------------
 		// Get Random Number 1-397
-		int total_Gold = GameBoard.getGold_Number();
-		int total_Secret_Gold = GameBoard.getSecret_Gold_Number();
-		int tRows = GameBoard.getRows();
-		int tColumns= GameBoard.getColumns();
 		ArrayList<Integer> gColumns = new ArrayList<Integer>();
 		ArrayList<Integer> gRows = new ArrayList<Integer>();
 		int [] randomNum1 = new int[total_Gold];
@@ -257,7 +289,7 @@ public class MainFrame extends JFrame {
 		locationxyA [0][1]=0;
 		
 		locationxyB [0][0]=0;
-		locationxyB [0][1]=9;
+		locationxyB [0][1]=tRows-1;
 	
 		locationxyC [0][0]=tColumns-1;
 		locationxyC [0][1]=tRows-1;
@@ -273,7 +305,7 @@ public class MainFrame extends JFrame {
 		targetCoordinate[0][1]=0;
 		
 		targetCoordinateB[0][0]=0;
-		targetCoordinateB[0][1]=9;
+		targetCoordinateB[0][1]=tRows-1;
 		
 		targetCoordinateC[0][0]=tColumns-1;
 		targetCoordinateC[0][1]=tRows-1;

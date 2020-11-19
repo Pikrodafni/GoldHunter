@@ -8,6 +8,10 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,16 +35,35 @@ import javax.swing.border.BevelBorder;
 
 public class Menu extends JFrame {
 
-	public JPanel contentPane;
+	private JPanel contentPane;
 	public JTextField textRows;
-	public int mRows;
-	public JTextField textColumns;
-	public JTextField goldRate;
-	public JTextField secretGoldRate;
-	public JTextField textField;
-	public JTextField textField_1;
-	public JTextField textField_2;
-	public JTextField textField_3;
+	private JTextField textColumns;
+	private JTextField goldRate;
+	private JTextField secretGoldRate;
+	private JTextField gold;
+	private JTextField maxMove;
+	private JTextField moveCost;
+	private JTextField targetCost;
+	public String getRow;
+	public String getColumns;
+	public String getNgold;
+	public String getNsgold;
+	public String getGoldA;
+	public String getMaxmoveA;
+	public String getMovecostA;
+	public String getTargetcostA;
+	public String getGoldB;
+	public String getMaxmoveB;
+	public String getMovecostB;
+	public String getTargetcostB;
+	public String getGoldC;
+	public String getMaxmoveC;
+	public String getMovecostC;
+	public String getTargetcostC;
+	public String getGoldD;
+	public String getMaxmoveD;
+	public String getMovecostD;
+	public String getTargetcostD;
 
 
 	/**
@@ -121,21 +144,58 @@ public class Menu extends JFrame {
 		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 15));
 		btnNewButton.setBackground(new Color(255, 204, 0));
 		btnNewButton.setForeground(SystemColor.menuText);
-		
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Board board=new Board();
-				//board.setRows(Integer.parseInt(textRows.getText()));
-				mRows=Integer.parseInt(textRows.getText());
-				System.out.println(mRows);
-				board.setRows(mRows);
-				MainFrame main=new MainFrame();
-				main.setVisible(true);
-				dispose();
-				
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		    	getRow = textRows.getText();
+		    	getColumns = textColumns.getText();
+		    	getNgold = goldRate.getText();
+		    	getNsgold = secretGoldRate.getText();
+		    	
+		          File file = new File("dosya.txt");
+		          if (!file.exists()) {
+		              try {
+						file.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          
+		          FileWriter fileWriter = null;
+				try {
+					fileWriter = new FileWriter(file, false);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+		          BufferedWriter bWriter = new BufferedWriter(fileWriter);
+		          try {
+					bWriter.write(getRow);
+					bWriter.newLine();
+					bWriter.write(getColumns);
+					bWriter.newLine();
+					bWriter.write(getNgold);
+					bWriter.newLine();
+					bWriter.write(getNsgold);
+					
+
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+		          try {
+					bWriter.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    	
+				MainFrame mainframe = new MainFrame();
+				mainframe.setVisible(true);
+				setVisible(false);
 			}
 		});
-		
 		btnNewButton.setBounds(400, 413, 192, 52);
 		panel.add(btnNewButton);
 		
@@ -151,14 +211,14 @@ public class Menu extends JFrame {
 		textColumns.setBounds(176, 221, 60, 25);
 		panel.add(textColumns);
 		
-		JLabel labelGoldRate = new JLabel("Gold Rate :");
+		JLabel labelGoldRate = new JLabel("Gold Number :");
 		labelGoldRate.setForeground(SystemColor.activeCaption);
 		labelGoldRate.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelGoldRate.setBackground(Color.WHITE);
 		labelGoldRate.setBounds(20, 255, 150, 30);
 		panel.add(labelGoldRate);
 		
-		JLabel labelSecretGold = new JLabel("Secret Gold Rate :");
+		JLabel labelSecretGold = new JLabel("Secret Gold Number :");
 		labelSecretGold.setForeground(SystemColor.activeCaption);
 		labelSecretGold.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelSecretGold.setBackground(Color.WHITE);
@@ -212,17 +272,13 @@ public class Menu extends JFrame {
 		lblPlayerSettings.setBounds(730, 101, 174, 42);
 		panel.add(lblPlayerSettings);
 		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(672, 163, 292, 2);
-		panel.add(separator_3);
-		
 		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(672, 335, 292, 2);
+		separator_4.setBounds(562, 335, 400, 2);
 		panel.add(separator_4);
 		
 		JSeparator separator_2_2 = new JSeparator();
 		separator_2_2.setOrientation(SwingConstants.VERTICAL);
-		separator_2_2.setBounds(672, 165, 2, 172);
+		separator_2_2.setBounds(562, 165, 2, 172);
 		panel.add(separator_2_2);
 		
 		JSeparator separator_2_3 = new JSeparator();
@@ -234,93 +290,294 @@ public class Menu extends JFrame {
 		lblNewLabel_1_2.setForeground(SystemColor.activeCaption);
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_2.setBackground(Color.WHITE);
-		lblNewLabel_1_2.setBounds(682, 175, 150, 30);
+		lblNewLabel_1_2.setBounds(574, 175, 162, 30);
 		panel.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Max Move :");
 		lblNewLabel_1_3.setForeground(SystemColor.activeCaption);
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_3.setBackground(Color.WHITE);
-		lblNewLabel_1_3.setBounds(684, 215, 150, 30);
+		lblNewLabel_1_3.setBounds(574, 215, 162, 30);
 		panel.add(lblNewLabel_1_3);
 		
 		JLabel lblNewLabel_1_4 = new JLabel("Move Cost :");
 		lblNewLabel_1_4.setForeground(SystemColor.activeCaption);
 		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_4.setBackground(Color.WHITE);
-		lblNewLabel_1_4.setBounds(684, 255, 150, 30);
+		lblNewLabel_1_4.setBounds(574, 255, 162, 30);
 		panel.add(lblNewLabel_1_4);
 		
 		JLabel lblNewLabel_1_5 = new JLabel("Target Cost :");
 		lblNewLabel_1_5.setForeground(SystemColor.activeCaption);
 		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_5.setBackground(Color.WHITE);
-		lblNewLabel_1_5.setBounds(684, 295, 150, 30);
+		lblNewLabel_1_5.setBounds(574, 295, 162, 30);
 		panel.add(lblNewLabel_1_5);
 		
-		textField = new JTextField();
-		textField.setText("200");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.info);
-		textField.setBounds(844, 184, 60, 25);
-		panel.add(textField);
+		gold = new JTextField();
+		gold.setText("200");
+		gold.setHorizontalAlignment(SwingConstants.CENTER);
+		gold.setColumns(10);
+		gold.setBackground(SystemColor.info);
+		gold.setBounds(787, 184, 117, 25);
+		panel.add(gold);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("3");
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setColumns(10);
-		textField_1.setBackground(SystemColor.info);
-		textField_1.setBounds(844, 224, 60, 25);
-		panel.add(textField_1);
+		maxMove = new JTextField();
+		maxMove.setText("3");
+		maxMove.setHorizontalAlignment(SwingConstants.CENTER);
+		maxMove.setColumns(10);
+		maxMove.setBackground(SystemColor.info);
+		maxMove.setBounds(787, 224, 117, 25);
+		panel.add(maxMove);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("5");
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setColumns(10);
-		textField_2.setBackground(SystemColor.info);
-		textField_2.setBounds(844, 264, 60, 25);
-		panel.add(textField_2);
+		moveCost = new JTextField();
+		moveCost.setText("5");
+		moveCost.setHorizontalAlignment(SwingConstants.CENTER);
+		moveCost.setColumns(10);
+		moveCost.setBackground(SystemColor.info);
+		moveCost.setBounds(787, 264, 117, 25);
+		panel.add(moveCost);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("10");
-		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_3.setColumns(10);
-		textField_3.setBackground(SystemColor.info);
-		textField_3.setBounds(844, 304, 60, 25);
-		panel.add(textField_3);
+		targetCost = new JTextField();
+		targetCost.setText("10");
+		targetCost.setHorizontalAlignment(SwingConstants.CENTER);
+		targetCost.setColumns(10);
+		targetCost.setBackground(SystemColor.info);
+		targetCost.setBounds(787, 304, 117, 25);
+		panel.add(targetCost);
 		
-		JButton btnNewButton_1 = new JButton("GamerA");
+		JSeparator separator_4_1 = new JSeparator();
+		separator_4_1.setBounds(562, 163, 400, 2);
+		panel.add(separator_4_1);
+		
+		JButton btnNewButton_1 = new JButton("Set GamerA");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getGoldA = gold.getText();
+		    	getMaxmoveA = maxMove.getText();
+		    	getMovecostA = moveCost.getText();
+		    	getTargetcostA = targetCost.getText();
+		    	  
+		    	File fileA = new File("gamerA.txt");
+		          if (!fileA.exists()) {
+		              try {
+						fileA.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          
+		          FileWriter fileWriterA = null;
+				try {
+					fileWriterA = new FileWriter(fileA, false);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+		          BufferedWriter bWriterA = new BufferedWriter(fileWriterA);
+		          try {
+		        		bWriterA.write(getGoldA);
+						bWriterA.newLine();
+						bWriterA.write(getMaxmoveA);
+						bWriterA.newLine();
+						bWriterA.write(getMovecostA);
+						bWriterA.newLine();
+						bWriterA.write(getTargetcostA);
+					
+
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+		          try {
+					bWriterA.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+			}
+		});
 		btnNewButton_1.setBorder(new LineBorder(new Color(204, 204, 255), 2));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1.setBackground(new Color(204, 255, 204));
 		btnNewButton_1.setForeground(Color.BLACK);
-		btnNewButton_1.setBounds(672, 144, 65, 21);
+		btnNewButton_1.setBounds(562, 140, 90, 25);
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("GamerB");
+		JButton btnNewButton_1_1 = new JButton("Set GamerB");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getGoldB = gold.getText();
+		    	getMaxmoveB = maxMove.getText();
+		    	getMovecostB = moveCost.getText();
+		    	getTargetcostB = targetCost.getText();
+		    	  
+		    	File fileB = new File("gamerB.txt");
+		          if (!fileB.exists()) {
+		              try {
+						fileB.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          
+		          FileWriter fileWriterB = null;
+				try {
+					fileWriterB = new FileWriter(fileB, false);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+		          BufferedWriter bWriterB = new BufferedWriter(fileWriterB);
+		          try {
+		        		bWriterB.write(getGoldB);
+						bWriterB.newLine();
+						bWriterB.write(getMaxmoveB);
+						bWriterB.newLine();
+						bWriterB.write(getMovecostB);
+						bWriterB.newLine();
+						bWriterB.write(getTargetcostB);
+					
+
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+		          try {
+					bWriterB.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnNewButton_1_1.setForeground(Color.BLACK);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1_1.setBorder(new LineBorder(new Color(204, 204, 255), 2));
-		btnNewButton_1_1.setBackground(new Color(255, 204, 255));
-		btnNewButton_1_1.setBounds(742, 144, 65, 21);
+		btnNewButton_1_1.setBackground(new Color(204, 255, 204));
+		btnNewButton_1_1.setBounds(662, 140, 90, 25);
 		panel.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_2 = new JButton("GamerC");
+		JButton btnNewButton_1_2 = new JButton("Set GamerC");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getGoldC = gold.getText();
+		    	getMaxmoveC = maxMove.getText();
+		    	getMovecostC = moveCost.getText();
+		    	getTargetcostC = targetCost.getText();
+		    	  
+		    	File fileC = new File("gamerC.txt");
+		          if (!fileC.exists()) {
+		              try {
+						fileC.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          
+		          FileWriter fileWriterC = null;
+				try {
+					fileWriterC = new FileWriter(fileC, false);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+		          BufferedWriter bWriterC = new BufferedWriter(fileWriterC);
+		          try {
+		        		bWriterC.write(getGoldC);
+						bWriterC.newLine();
+						bWriterC.write(getMaxmoveC);
+						bWriterC.newLine();
+						bWriterC.write(getMovecostC);
+						bWriterC.newLine();
+						bWriterC.write(getTargetcostC);
+					
+
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+		          try {
+					bWriterC.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnNewButton_1_2.setForeground(Color.BLACK);
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1_2.setBorder(new LineBorder(new Color(204, 204, 255), 2));
-		btnNewButton_1_2.setBackground(new Color(204, 255, 255));
-		btnNewButton_1_2.setBounds(812, 144, 65, 21);
+		btnNewButton_1_2.setBackground(new Color(204, 255, 204));
+		btnNewButton_1_2.setBounds(765, 140, 90, 25);
 		panel.add(btnNewButton_1_2);
 		
-		JButton btnNewButton_1_3 = new JButton("GamerD");
+		JButton btnNewButton_1_3 = new JButton("Set GamerD");
+		btnNewButton_1_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getGoldD = gold.getText();
+		    	getMaxmoveD = maxMove.getText();
+		    	getMovecostD = moveCost.getText();
+		    	getTargetcostD = targetCost.getText();
+		    	  
+		    	File fileD = new File("gamerD.txt");
+		          if (!fileD.exists()) {
+		              try {
+						fileD.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		          }
+		          
+		          FileWriter fileWriterD = null;
+				try {
+					fileWriterD = new FileWriter(fileD, false);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+		          BufferedWriter bWriterD = new BufferedWriter(fileWriterD);
+		          try {
+		        		bWriterD.write(getGoldD);
+						bWriterD.newLine();
+						bWriterD.write(getMaxmoveD);
+						bWriterD.newLine();
+						bWriterD.write(getMovecostD);
+						bWriterD.newLine();
+						bWriterD.write(getTargetcostD);
+					
+
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+		          try {
+					bWriterD.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnNewButton_1_3.setForeground(Color.BLACK);
 		btnNewButton_1_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1_3.setBorder(new LineBorder(new Color(204, 204, 255), 2));
-		btnNewButton_1_3.setBackground(new Color(255, 255, 204));
-		btnNewButton_1_3.setBounds(882, 144, 65, 21);
+		btnNewButton_1_3.setBackground(new Color(204, 255, 204));
+		btnNewButton_1_3.setBounds(865, 140, 90, 25);
 		panel.add(btnNewButton_1_3);
+		
 		
 	}
 }

@@ -7,10 +7,10 @@ public class Board {
 	
 	public int rows;
 	public int columns;
-	public int gold_Number;
+	public float gold_Number;
 	public int gold_Rate;
 	public int secret_Gold_Rate;
-	public int secret_Gold_Number;
+	public float secret_Gold_Number;
 	public int [] gold_Value;
 	
 	// -------------------------------------------------------------
@@ -31,7 +31,7 @@ public class Board {
 	// -------------------------------------------------------------
 	public Board()
 	{
-		this.rows = 10;
+		this.rows = 20;
 		this.columns = 20;
 		this.gold_Rate = 20;
 		this.secret_Gold_Rate = 10;
@@ -65,16 +65,16 @@ public class Board {
 	public void setSecret_Gold_Rate(int secret_Gold_Rate) {
 		this.secret_Gold_Rate = secret_Gold_Rate;
 	}
-	public int getGold_Number() {
+	public float getGold_Number() {
 		return gold_Number;
 	}
-	public void setGold_Number(int gold_Number) {
+	public void setGold_Number(float gold_Number) {
 		this.gold_Number = gold_Number;
 	}
-	public int getSecret_Gold_Number() {
+	public float getSecret_Gold_Number() {
 		return secret_Gold_Number;
 	}
-	public void setSecret_Gold_Number(int secret_Gold_Number) {
+	public void setSecret_Gold_Number(float secret_Gold_Number) {
 		this.secret_Gold_Number = secret_Gold_Number;
 	}
 	public int[] getGold_Value() {
