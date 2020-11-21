@@ -32,13 +32,13 @@ public class GamerA extends Player {
 			xuzak= Math.abs(xuzak);
 			yuzak= Math.abs(yuzak);
 			totaluzak=xuzak+yuzak;
-			if(GoldCoordinate[k][0]!=0 && GoldCoordinate[k][1]!=0 ) {
+			
 				if(totaluzak<enkucukuzak) {
 				targetCoordinate[0][0]=GoldCoordinate[k][0];
 				targetCoordinate[0][1]=GoldCoordinate[k][1];
 				enkucukuzak=totaluzak;
 			}
-			}
+			
 			 
 			
 			 

@@ -516,6 +516,7 @@ public class MainFrame extends JFrame {
 
    for(i=0;i<total_Gold;i++) {
 	   if(GoldCoordinate[i][0]!=99 && GoldCoordinate[i][1]!=99) {
+		   System.out.println(GoldCoordinate[i][0]+" "+GoldCoordinate[i][1]);
 		   devam=true;
 	   }
    }
@@ -525,7 +526,7 @@ public class MainFrame extends JFrame {
             		
         			if( locationxyA[0][1]==targetCoordinate[0][1] && locationxyA[0][0]==targetCoordinate[0][0]  ) {
         				
-        				targetCoordinate = gmA.chooseTargetA(total_Gold,GoldCoordinate,locationxyA);
+        				targetCoordinate = gmA.chooseTargetA(sayac+tmp,GoldCoordinate,locationxyA);
         				
         				if(targetCoordinate[0][0]!=99&&targetCoordinate[0][1]!=99) {
         					harcananaltinA+=gmA.getChoosing_Target_Cost();
@@ -670,7 +671,7 @@ public class MainFrame extends JFrame {
             	
         			if( locationxyB[0][1]==targetCoordinateB[0][1] && locationxyB[0][0]==targetCoordinateB[0][0] ) {
         				
-        				targetCoordinateB = gmB.chooseTargetB(total_Gold,GoldCoordinate,locationxyB,grid);
+        				targetCoordinateB = gmB.chooseTargetB(sayac+tmp,GoldCoordinate,locationxyB,grid);
         				
         				if(targetCoordinateB[0][0]!=99&&targetCoordinateB[0][1]!=99) {
         					harcananaltinB+=gmB.getChoosing_Target_Cost();
@@ -838,7 +839,7 @@ public class MainFrame extends JFrame {
         					}
         				}
         				
-        				targetCoordinateC = gmC.chooseTargetC(total_Gold,GoldCoordinate,locationxyC,grid);
+        				targetCoordinateC = gmC.chooseTargetC(sayac+tmp,GoldCoordinate,locationxyC,grid);
         				if(targetCoordinateC[0][0]!=99&&targetCoordinateC[0][1]!=99) {
         					harcananaltinC+=gmC.getChoosing_Target_Cost();
         					totalGoldC=totalGoldC-gmC.getChoosing_Target_Cost();// hedef belirleme maaliyeti
@@ -987,7 +988,7 @@ public class MainFrame extends JFrame {
         					
         					if(locationxyD[0][1]==targetCoordinateD[0][1] && locationxyD[0][0]==targetCoordinateD[0][0]) {
         						
-        						targetCoordinateD = gmD.chooseTargetD(total_Gold,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
+        						targetCoordinateD = gmD.chooseTargetD(sayac+tmp,GoldCoordinate,locationxyD,grid,targetCoordinate,targetCoordinateB,targetCoordinateC,hamleA,hamleB,hamleC);
         						if(targetCoordinateD[0][0]!=99&&targetCoordinateD[0][1]!=99) {
         							harcananaltinD+=gmD.getChoosing_Target_Cost();
         							totalGoldD=totalGoldD-gmD.getChoosing_Target_Cost();// hedef belirleme maaliyeti
